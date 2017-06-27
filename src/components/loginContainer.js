@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import * as data from '../api/leads.json';
-
-
-
+import { Redirect } from 'react-router'
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -15,14 +13,11 @@ class LoginContainer extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   componentDidMount(){
     console.log()
-
   }
-
 
   handleSubmit(e){
     e.preventDefault();
@@ -82,6 +77,12 @@ class LoginContainer extends Component {
           ) : (
             <p></p>
           )}
+          {this.state.isLoggedIn ? (
+            <Redirect to="/dashboard" push />
+          ) : (
+            <p></p>
+          )}
+
           </div>
         </div>
     );
