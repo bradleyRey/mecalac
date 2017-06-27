@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import * as data from '../api/leads.json';
-import { browserHistory } from 'react-router';
-import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
-
-
-
+import { Redirect } from 'react-router'
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -17,14 +13,11 @@ class LoginContainer extends Component {
 
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-
   }
 
   componentDidMount(){
     console.log()
-
   }
-
 
   handleSubmit(e){
     e.preventDefault();
@@ -77,11 +70,16 @@ class LoginContainer extends Component {
               <input type="submit" value="Submit" onClick={(e) => this.handleSubmit(e)} />
           </form>
           <div>
-            {this.state.errorMessage ? (
-              <p>{this.state.errorMessage}</p>
-            ) : (
-              <p></p>
-            )}
+          {this.state.errorMessage ? (
+            <p>{this.state.errorMessage}</p>
+          ) : (
+            <p></p>
+          )}
+          {this.state.isLoggedIn ? (
+            <Redirect to="/dashboard" push />
+          ) : (
+            <p></p>
+          )}
           </div>
         </div>
     );

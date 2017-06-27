@@ -5,7 +5,7 @@ import Test from './test/testing'
 import LoginContainer from './components/loginContainer'
 import DashboardContainer from './components/dashboardContainer';
 import SingleLeadComponent from './components/singleLeadComponent';
-import { BrowserRouter, Switch, Route, withRouter} from 'react-router-dom';
+//import { BrowserRouter, Switch, Route, withRouter} from 'react-router-dom';
 
 
 
