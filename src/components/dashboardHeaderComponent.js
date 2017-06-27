@@ -23,7 +23,7 @@
           <TopHeaderComponent />
           <div className="bgImg">
             <div className='maxWidth'>
-              <img  className='HeaderArrow' src={require('./images/Arrow.png')}/>
+              <img className='HeaderArrow' src={require('./images/Arrow.png')}/>
               <h2 className='Plantworx'>PLANTWORX2017</h2>
               <h2 className='CustomerLeads'>CUSTOMERLEADS</h2>
             </div>

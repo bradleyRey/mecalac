@@ -29,15 +29,15 @@ class LoginContainer extends Component {
     axios.post(`http://localhost:3010/api`, names)
       .then( response => {
         if(response.data.auth){
-          //send user to the dashboard
+
+          //browserHistory.push('/dashboard');
+
           this.setState({
             isLoggedIn: true,
             userdata: response.data.userdata,
             errorMessage: false
-
           })
         }else {
-          //show error message
           this.setState({
             isLoggedIn: false,
             errorMessage: 'Your login was not successful'
@@ -50,8 +50,6 @@ class LoginContainer extends Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log(this.state)
-
     this.setState({
       [name]: value
     });
@@ -89,7 +87,6 @@ class LoginContainer extends Component {
           ) : (
             <p></p>
           )}
-
           </div>
         </div>
     );

@@ -1,7 +1,7 @@
 
 var express    = require('express');
 var bodyParser = require('body-parser');
-var cors       = require('cors')
+var cors       = require('cors');
 var app        = express();
 
 app.use(cors());
@@ -12,6 +12,11 @@ var port = process.env.PORT || 3010;
 
 //this is to eventually be a mongodb
 //this also needs to include all the users leads and other info
+
+
+
+
+
 const userData = [
   {"username": "brad", "password": "password"},
   {"username": "jay", "password": "password1"}
