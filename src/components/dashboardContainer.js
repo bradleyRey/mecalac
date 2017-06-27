@@ -11,7 +11,8 @@ class DashboardContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      customerName : " "
+      customerName : " ",
+      testData:data,
     };
   }
 
@@ -24,10 +25,9 @@ class DashboardContainer extends Component {
         <DashboardHeaderComponent />
         <div className="maxWidth maxWidthBorder">
         <TitleAboveTable />
-
-        {getNewData(data)}
+          {getNewData(this.state.testData)}
         </div>
-        <Footer />
+        <Footer test={this.state.testData} test2={"I am test 2"}/>
       </div>
     );
   }
@@ -47,6 +47,7 @@ function getNewData(data) {
         <td>{data[i].Company}</td>
         <td>{data[i].Status}</td>
         <td className='center'><img className='tick' src={require('./images/completedtick.png')}/></td>
+        <td><button className='updateButton'>Update Here</button></td>
       </tr>
     );
   }
@@ -59,10 +60,12 @@ function getNewData(data) {
       <th className='cellBorder'>Company</th>
       <th className='cellBorder'>Status</th>
       <th className='cellBorder' >Completed</th>
+      <th></th>
     </tr>
     {rows}
-  </table>)
-}
+  </table>
+
+)};
 
 const TitleAboveTable = () => (
 
@@ -75,21 +78,25 @@ const TitleAboveTable = () => (
 
     )
 
-const Footer = () => (
-
-  <div>
-    <div className='Footer'>
-      <img className='mecalacFooter' src={require('./images/Logo.png')}/>
-      <div className='socialMedia'>
-        <img className='facebook' src={require('./images/Facebooklogo.png')}/>
-        <img className='linkedinlogo' src={require('./images/linkedinlogo.png')}/>
-        <img className='youtubelogo' src={require('./images/youtubelogo.png')}/>
+const Footer = (props) => {
+  console.log('PROPS', props)
+  return (
+    <div>
+      <div className='Footer'>
+        <img className='mecalacFooter' src={require('./images/Logo.png')}/>
+        <div className='socialMedia'>
+          <img className='facebook' src={require('./images/Facebooklogo.png')}/>
+          <img className='linkedinlogo' src={require('./images/linkedinlogo.png')}/>
+          <img className='youtubelogo' src={require('./images/youtubelogo.png')}/>
+        </div>
       </div>
-
     </div>
-  </div>
+  )
+
+}
 
 
-)
+
+
 
 export default DashboardContainer;

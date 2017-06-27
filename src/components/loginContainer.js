@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import * as data from '../api/leads.json';
 
 
 
@@ -9,18 +11,43 @@ class LoginContainer extends Component {
     this.state = {
       username: '',
       password: ''
-  };
+    };
 
-  this.handleInputChange = this.handleInputChange.bind(this);
-  this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
   }
 
+  componentDidMount(){
+    console.log()
+
+  }
+
+
   handleSubmit(e){
     e.preventDefault();
-    console.log(this.state)
-    //return false;
+    var names = {
+      'username': this.state.username,
+      'password': this.state.password
+    }
+    axios.post(`http://localhost:3010/api`, names)
+      .then( response => {
+        if(response.data.auth){
+          //send user to the dashboard
+          this.setState({
+            isLoggedIn: true,
+            userdata: response.data.userdata,
+            errorMessage: false
 
+          })
+        }else {
+          //show error message
+          this.setState({
+            isLoggedIn: false,
+            errorMessage: 'Your login was not successful'
+          })
+        }
+    })
   }
 
   handleInputChange(event) {
@@ -35,6 +62,7 @@ class LoginContainer extends Component {
   }
 
   render(){
+
     return(
         <div>
           <form >
@@ -46,8 +74,15 @@ class LoginContainer extends Component {
               Password:
               <input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
             </label>
-              <input type="submit" value="Submit" onClick={this.handleSubmit} />
+              <input type="submit" value="Submit" onClick={(e) => this.handleSubmit(e)} />
           </form>
+          <div>
+          {this.state.errorMessage ? (
+            <p>{this.state.errorMessage}</p>
+          ) : (
+            <p></p>
+          )}
+          </div>
         </div>
     );
   };
