@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import * as data from '../api/leads.json';
+import { browserHistory } from 'react-router';
+import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 
 
 
@@ -33,15 +35,15 @@ class LoginContainer extends Component {
     axios.post(`http://localhost:3010/api`, names)
       .then( response => {
         if(response.data.auth){
-          //send user to the dashboard
+
+          //browserHistory.push('/dashboard');
+
           this.setState({
             isLoggedIn: true,
             userdata: response.data.userdata,
             errorMessage: false
-
           })
         }else {
-          //show error message
           this.setState({
             isLoggedIn: false,
             errorMessage: 'Your login was not successful'
@@ -54,8 +56,6 @@ class LoginContainer extends Component {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
-    console.log(this.state)
-
     this.setState({
       [name]: value
     });
@@ -77,11 +77,11 @@ class LoginContainer extends Component {
               <input type="submit" value="Submit" onClick={(e) => this.handleSubmit(e)} />
           </form>
           <div>
-          {this.state.errorMessage ? (
-            <p>{this.state.errorMessage}</p>
-          ) : (
-            <p></p>
-          )}
+            {this.state.errorMessage ? (
+              <p>{this.state.errorMessage}</p>
+            ) : (
+              <p></p>
+            )}
           </div>
         </div>
     );
