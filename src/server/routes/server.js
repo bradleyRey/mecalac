@@ -7,13 +7,11 @@ var mongodb   = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 
 
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 3010;
-
 
 var db;
 
@@ -22,11 +20,6 @@ MongoClient.connect('mongodb://localhost:27017/db', (err, database) => {
   if (err) return console.log(err)
   db = database;
 });
-
-
-
-
-
 
 
 
