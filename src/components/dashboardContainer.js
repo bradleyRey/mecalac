@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import DashboardHeaderComponent from './dashboardHeaderComponent'
 import '../App.css';
-import * as data from '../api/leads.json'
+import * as data from '../server/leads.json'
 
 class DashboardContainer extends Component {
   constructor(props) {

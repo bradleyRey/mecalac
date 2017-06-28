@@ -4,7 +4,7 @@ import '../App.css';
 import DashboardContainer from './dashboardContainer'
 import TitleAboveTable from './dashboardContainer'
 
-import * as data from '../api/leads.json'
+import * as data from '../server/leads.json'
 
 class SingleLeadComponent extends Component {
   constructor(props){

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../App.css';
-import * as data from '../api/leads.json'
+import * as data from '../server/leads.json'
 
 
 const Table = () => (
