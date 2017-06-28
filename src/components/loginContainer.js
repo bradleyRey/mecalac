@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import * as data from '../api/leads.json';
 import { Redirect } from 'react-router'
+import TopHeaderComponent from './topHeaderComponent'
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -57,18 +58,24 @@ class LoginContainer extends Component {
   render(){
 
     return(
-        <div>
-          <form >
-            <label>
-              Username:
-              <input type="text" name="username" value={this.state.username} onChange={this.handleInputChange}/>
-            </label>
-            <label>
-              Password:
-              <input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
-            </label>
-              <input type="submit" value="Submit" onClick={(e) => this.handleSubmit(e)} />
-          </form>
+        <div className="loginPage">
+          <TopHeaderComponent />
+          <img src={require('./images/loginbg.png')} className="bg" />
+          <div className="loginFormWrap">
+            <h3 className="orangeText">ENTER YOUR LOGIN</h3>
+            <h3 className="lightgreyText">DETAILS BELOW</h3>
+            <form>
+              <label>
+                Username:
+                <input type="text" name="username" value={this.state.username} onChange={this.handleInputChange}/>
+              </label>
+              <label>
+                Password:
+                <input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
+              </label>
+                <input className="btn loginBtn" type="submit" value="Submit" onClick={(e) => this.handleSubmit(e)} />
+            </form>
+          </div>
           <div>
           {this.state.errorMessage ? (
             <p>{this.state.errorMessage}</p>
