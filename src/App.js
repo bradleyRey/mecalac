@@ -4,7 +4,7 @@ import './App.css';
 import Test from './test/testing'
 import LoginContainer from './components/loginContainer'
 import DashboardContainer from './components/dashboardContainer';
-import SingleLeadComponent from './components/singleLeadComponent';
+import SingleLeadContainer from './components/singleLeadContainer';
 import { BrowserRouter, Switch, Route, withRouter} from 'react-router-dom';
 
 
@@ -27,7 +27,7 @@ const MyRoutes = () => (
       <Switch>
         <Route exact path='/' component={LoginContainer}/>
         <Route exact path='/dashboard' component={DashboardContainer}/>
-        <Route path='/dashboard/:id' component={SingleLeadComponent}/>
+        <Route path='/viewlead/:id' component={SingleLeadContainer}/>
       </Switch>
     </main>
 

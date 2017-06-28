@@ -82,6 +82,52 @@ img.bg{
 
 
 }
+
+
+/* View Lead */
+.viewLeadTable input{
+  width: 100%;
+}
+
+.cellBorder{
+   border-right:  4px solid white;
+   text-align: left;
+   padding: 8px;
+   text-align: left;
+   border-bottom: 1px solid #ddd;
+
+ }
+
+.line {
+  color:black;
+}
+
+.updateBlock{
+  width:200px;
+  height:80px;
+  background-color:rgb(4,53,132);
+  z-index: 2;
+  font-family:'intro_regular';
+  color:white;
+  font-size: 40px;
+  padding-top:30px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+.TableHeaderSingle{
+  margin-top: 20px;
+
+}
+
+
+
+
+
+
+
+
 .NEWone {
   font-size:100px;
   position: relative;
@@ -254,50 +300,6 @@ th {
      margin-right:280px;
    }
  }
-
- .cellBorder{
-   border-right:  4px solid white;
-   text-align: left;
-   padding: 8px;
-   text-align: left;
-   border-bottom: 1px solid #ddd;
-
- }
-
-.line {
-  color:black;
-}
-
-.update1{
-  width:200px;
-  height:80px;
-  background-color:rgb(4,53,132);
-  z-index: 2;
-  font-family:'intro_regular';
-  color:white;
-  font-size: 40px;
-  padding-top:30px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.update2 {
-  width:200px;
-  height:80px;
-  background-color:rgb(123,124,124);
-  z-index: 2;
-  font-family:'intro_regular';
-  color:white;
-  font-size: 40px;
-  padding-top:30px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.TableHeaderSingle{
-  margin-top: 20px;
-
-}
 
 .Footer{
   height:70px;

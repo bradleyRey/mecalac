@@ -19,7 +19,7 @@ class SingleLeadComponent extends Component {
           <div>
               <DashboardHeaderComponent />
               <div className="maxWidth">
-              <NewTableLead />
+                <NewTableLead />
               </div>
           </div>
         );
@@ -29,7 +29,7 @@ class SingleLeadComponent extends Component {
 
      const NewTableLead = () => (
        <div>
-         <table className='dashboardTable'>
+         <table className='viewLeadTable'>
           <tr className='TableHeaderSingle'>
             <th className='cellBorder'></th>
             <th className='cellBorder'>Date</th>
@@ -38,18 +38,26 @@ class SingleLeadComponent extends Component {
             <th></th>
           </tr>
           <tr>
-            <td><UpdateBox /></td>
+            <td>
+              <div className='updateBlock'>UPDATE1</div>
+            </td>
+            <td>
+              <input type="text" ref={(dateField) => this.dateField = dateField} />
+            </td>
+            <td>
+              <input type="text" ref={(activityField) => this.activityField = activityField} />
+            </td>
+            <td>
+              <input type="text" ref={(nextField) => this.nextField = nextField} />
+            </td>
+            <td className="center">
+              <button className='btn updateBtn'>Submit update</button>
+            </td>
           </tr>
          </table>
        </div>
      )
 
-     const UpdateBox = () => (
-       <div>
-        <div className='update1'>UPDATE1</div>
-        <div className='update2'>UPDATE2</div>
-        <div className='update2'>UPDATE3</div>
-       </div>
-     )
+
 
 export default SingleLeadComponent

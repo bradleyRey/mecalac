@@ -4,8 +4,12 @@
 //when clicking the login button, direct user to dashboard and display their name from the state
 import React, { Component } from 'react';
 import DashboardHeaderComponent from './dashboardHeaderComponent'
+import { Link } from 'react-router-dom'
+
 import '../App.css';
+import LeadsApi from '../api/leads'
 import * as data from '../server/leads.json'
+
 
 class DashboardContainer extends Component {
   constructor(props) {
@@ -15,11 +19,15 @@ class DashboardContainer extends Component {
   }
 
   componentWillMount(){
-    this.setState({
-      testData: data
-    }, function(){
-      console.log('STATE', this.state);
-    })
+    //api call
+    LeadsApi.getLeads(this.state.userdata.dealerid, leads => {
+      this.setState({
+        testData: leads
+      }, function(){
+        console.log('STATE', this.state);
+      })
+    });
+
   }
 
   render() {
@@ -34,11 +42,10 @@ class DashboardContainer extends Component {
       </div>
     );
   }
-
 }
 
 function getNewData(data) {
-
+  console.log(data)
   var rows = [];
   for (var i = 0; i < data.length; i++) {
     //if()
@@ -51,7 +58,7 @@ function getNewData(data) {
         <td>{data[i].Company}</td>
         <td>{data[i].Status}</td>
         <td className='center'><img className='tick' src={require('./images/completedtick.png')}/></td>
-        <td><button className='btn updateBtn'>Update Here</button></td>
+        <td><Link to={`/viewlead/${data[i].LeadId}`} className='btn updateBtn'>Update Here</Link></td>
       </tr>
     );
   }
