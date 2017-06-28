@@ -12,15 +12,14 @@ class DashboardContainer extends Component {
     super(props);
     this.state = this.props.location.state
     this.state.testData = ''
-
   }
 
-  componentDidMount(){
+  componentWillMount(){
     this.setState({
-      testData:data
+      testData: data
+    }, function(){
+      console.log('STATE', this.state);
     })
-    console.log('STATE', this.state);
-
   }
 
   render() {
@@ -28,7 +27,7 @@ class DashboardContainer extends Component {
       <div>
         <DashboardHeaderComponent />
         <div className="maxWidth maxWidthBorder">
-        <TitleAboveTable />
+        <TitleAboveTable username={this.state.userdata.username} />
           {getNewData(this.state.testData)}
         </div>
         <Footer test={this.state.testData} test2={"I am test 2"}/>
@@ -71,19 +70,18 @@ function getNewData(data) {
 
 )};
 
-const TitleAboveTable = () => (
-
+const TitleAboveTable = (props) => {
+  return(
     <div>
       <img  className='HeaderArrowSmall' src={require('./images/Arrow.png')}/>
-        <h3 className='SmallTitle'>fsd</h3>
+        <h3 className='SmallTitle'>{props.username}</h3>
         <h3 className='SmallTitleLeads'>CUSTOMER LEADS</h3>
 
     </div>
-
-    )
+  )
+}
 
 const Footer = (props) => {
-  console.log('PROPS', props)
   return (
     <div>
       <div className='Footer'>
@@ -98,9 +96,5 @@ const Footer = (props) => {
   )
 
 }
-
-
-
-
 
 export default DashboardContainer;

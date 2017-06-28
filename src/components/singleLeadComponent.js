@@ -15,7 +15,6 @@ class SingleLeadComponent extends Component {
   }
 
     render() {
-
         return(
           <div>
               <DashboardHeaderComponent />
@@ -23,12 +22,9 @@ class SingleLeadComponent extends Component {
               <NewTableLead />
               </div>
           </div>
-
         );
       }
      }
-
-
 
 
      const NewTableLead = () => (
