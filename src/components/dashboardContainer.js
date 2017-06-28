@@ -10,16 +10,20 @@ import * as data from '../api/leads.json'
 class DashboardContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      customerName : " ",
-      testData:data,
-    };
+    this.state = this.props.location.state
+    this.state.testData = ''
+
+  }
+
+  componentDidMount(){
+    this.setState({
+      testData:data
+    })
+    console.log('STATE', this.state);
+
   }
 
   render() {
-
-
-
     return(
       <div>
         <DashboardHeaderComponent />
@@ -71,7 +75,7 @@ const TitleAboveTable = () => (
 
     <div>
       <img  className='HeaderArrowSmall' src={require('./images/Arrow.png')}/>
-        <h3 className='SmallTitle'>BALGOWNIE</h3>
+        <h3 className='SmallTitle'>fsd</h3>
         <h3 className='SmallTitleLeads'>CUSTOMER LEADS</h3>
 
     </div>

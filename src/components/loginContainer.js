@@ -75,18 +75,25 @@ class LoginContainer extends Component {
               </label>
                 <input className="btn loginBtn" type="submit" value="Submit" onClick={(e) => this.handleSubmit(e)} />
             </form>
-          </div>
-          <div>
-          {this.state.errorMessage ? (
-            <p>{this.state.errorMessage}</p>
-          ) : (
-            <p></p>
-          )}
-          {this.state.isLoggedIn ? (
-            <Redirect to="/dashboard" push />
-          ) : (
-            <p></p>
-          )}
+            <div className="formResponse">
+            {this.state.errorMessage ? (
+              <p>{this.state.errorMessage}</p>
+            ) : (
+              <p></p>
+            )}
+            {this.state.isLoggedIn ? (
+              <Redirect to={{
+                pathname: '/dashboard',
+                state: this.state
+
+
+              }} />
+            ) : (
+              <p></p>
+            )}
+            </div>
+
+
           </div>
         </div>
     );
