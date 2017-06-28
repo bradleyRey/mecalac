@@ -19,6 +19,10 @@ class DashboardContainer extends Component {
   }
 
   componentWillMount(){
+    if(!localStorage['mecLoggedIn']){
+      console.log('Not logged in')
+    }
+
     //api call
     LeadsApi.getLeads(this.state.userdata.dealerid, leads => {
       this.setState({
@@ -35,7 +39,7 @@ class DashboardContainer extends Component {
       <div>
         <DashboardHeaderComponent />
         <div className="maxWidth maxWidthBorder">
-        <TitleAboveTable username={this.state.userdata.username} />
+        <TitleAboveTable username={localStorage['mecDealerName']} />
           {getNewData(this.state.testData)}
         </div>
         <Footer test={this.state.testData} test2={"I am test 2"}/>
@@ -45,7 +49,6 @@ class DashboardContainer extends Component {
 }
 
 function getNewData(data) {
-  console.log(data)
   var rows = [];
   for (var i = 0; i < data.length; i++) {
     //if()

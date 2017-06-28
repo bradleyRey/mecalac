@@ -31,7 +31,9 @@ class LoginContainer extends Component {
         if(response.data.auth){
 
           //browserHistory.push('/dashboard');
-
+          localStorage.setItem('mecLoggedIn', true);
+          localStorage.setItem('mecDealerId', response.data.userdata.dealerid);
+          localStorage.setItem('mecDealerName', response.data.userdata.username);
           this.setState({
             isLoggedIn: true,
             userdata: response.data.userdata,
