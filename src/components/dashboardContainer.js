@@ -38,6 +38,7 @@ function getNewData(data) {
 
   var rows = [];
   for (var i = 0; i < data.length; i++) {
+    //if()
     rows.push(
       <tr>
         <td>{data[i].Title + " " + data[i].FirstName + " " + data[i].LastName} </td>
