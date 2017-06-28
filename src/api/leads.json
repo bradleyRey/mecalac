@@ -1,10 +1,6 @@
 [
   {
-<<<<<<< HEAD
     "DealerId": 1,
-=======
-    "DealerId": "1",
->>>>>>> 3993e06410da99e728c89e276d48412c055fb11a
     "Title": "Mr",
     "First Name": "Jim",
     "Last Name": "Taylor",
@@ -9304,11 +9300,7 @@
     "Completed": "No"
   },
   {
-<<<<<<< HEAD
     "DealerId": 19,
-=======
-    "DealerId": "1",
->>>>>>> 3993e06410da99e728c89e276d48412c055fb11a
     "Title": "Mr",
     "First Name": "Brendan",
     "Last Name": "Mosley",
@@ -9338,11 +9330,8 @@
     "Completed": "No"
   },
   {
-<<<<<<< HEAD
+
     "DealerId": 19,
-=======
-    "DealerId": "1",
->>>>>>> 3993e06410da99e728c89e276d48412c055fb11a
     "Title": "Mr",
     "First Name": "Ben",
     "Last Name": "Warren",
