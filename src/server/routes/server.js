@@ -3,12 +3,32 @@ var express    = require('express');
 var bodyParser = require('body-parser');
 var cors       = require('cors')
 var app        = express();
+var mongodb   = require('mongodb');
+const MongoClient = require('mongodb').MongoClient;
+
+
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 3010;
+
+
+var db;
+
+//connect to DB using MongoDB
+MongoClient.connect('mongodb://localhost:27017/db', (err, database) => {
+  if (err) return console.log(err)
+  db = database;
+});
+
+
+
+
+
+
+
 
 //this is to eventually be a mongodb
 //this also needs to include all the users leads and other info
@@ -47,6 +67,30 @@ app.post('/api',function(req,res){
   })
   res.status('201').send(resp);
   res.end()
+});
+
+
+app.post('/api/getLeads',function(req,res){
+
+  db.collection('leads').find().toArray((err, results) => {
+    console.log(results)
+    res.send(results)
+  })
+
+})
+app.post('/api/getLeadsById',function(req,res){
+  console.log(req.body)
+  var dealerid = req.body.DealerId
+  dealerid = parseInt(dealerid)
+  var query = {
+    DealerId: dealerid
+  }
+  db.collection('leads').find(query).toArray((err, results) => {
+    console.log('sd')
+    console.log(results);
+    res.send(results);
+
+  });
 });
 
 //starting server
