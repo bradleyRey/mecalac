@@ -11,13 +11,8 @@
   class DashboardHeaderComponent extends Component {
     constructor(props) {
       super(props);
-      this.state = {
-        customerName : " "
-      };
     }
-
     render() {
-
       return(
         <div>
           <TopHeaderComponent />
@@ -30,10 +25,8 @@
           </div>
         </div>
 
-
       );
     }
-
   }
 
 
