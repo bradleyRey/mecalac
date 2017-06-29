@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import DashboardHeaderComponent from './dashboardHeaderComponent'
+import { Link } from 'react-router-dom'
+
 import '../App.css';
 import DashboardContainer from './dashboardContainer'
 import TitleAboveTable from './dashboardContainer'
@@ -41,18 +43,18 @@ class SingleLeadComponent extends Component {
       //get lead info and add to state
       LeadsApi.getLeadById(this.state.leadid, resp => {
         console.log("Get lead response: ", resp)
-        if(resp.data.length > 0 && resp.data[0].Status != 'None' ){
+        if(typeof resp.data.Status === 'object'){
           this.setState({
             update1: {
-              ...resp.data[0].status.update1
+              ...resp.data.Status.update1
             },
             update2: {
-              ...resp.data[0].status.update2
+              ...resp.data.Status.update2
             },
             update3: {
-              ...resp.data[0].status.update3
+              ...resp.data.Status.update3
             },
-            leadComplete: resp.data[0].status.leadComplete
+            leadComplete: resp.data.Status.leadComplete
           });
 
         }
@@ -143,8 +145,6 @@ class SingleLeadComponent extends Component {
   }
 
   handleSubmit(updateNum) {
-    console.log(this.state)
-    //axios request
     LeadsApi.submitLead(this.state.leadid, updateNum, this.state, resp => {
       console.log("Submit response: ", resp)
       if(resp.data.success){
@@ -166,7 +166,6 @@ class SingleLeadComponent extends Component {
         })
       }
     });
-
   }
 
   render() {
@@ -249,10 +248,16 @@ class SingleLeadComponent extends Component {
                </td>
              </tr>
             </table>
-            {this.state.update3.complete ? (
+            {(this.state.update2.complete && !this.state.leadComplete) ? (
               <button className="btn completeLeadBtn" onClick={() => this.handleSubmit('completeLead')}>Complete Lead</button>
             ) : (
-              <p></p>
+              <span></span>
+            )}
+            {this.state.leadComplete ? (
+
+              <Link to={`/dashboard`} className="btn completeLeadBtn">Back to leads</Link>
+            ) : (
+              <span></span>
             )}
           </div>
       </div>
