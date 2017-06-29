@@ -13,6 +13,33 @@ class LeadsApi {
       })
   }
   static getLeadById(dealerid, callback){
+    console.log(dealerid)
+    const theObj = {
+      currentStatus: {
+        update1: {
+          date: 'sada',
+          activity: 'sadas',
+          nextAction: 'sada',
+          complete: true
+        },
+        update2:{
+          date: '',
+          activity: '',
+          nextAction: '',
+          complete: false
+        },
+        update3: {
+          date: '',
+          activity: '',
+          nextAction: '',
+          complete: false
+        },
+        leadComplete: false
+      }
+    }
+    return callback(theObj);
+
+    /*
     axios.post(`http://localhost:3010/api/getLeadById`, {DealerId: dealerid})
       .then( response => {
         setTimeout(function(){
@@ -20,11 +47,35 @@ class LeadsApi {
           return callback(response)
         },2000)
       })
+      */
   }
 
   static submitLead(dealerid, updateType, update, callback){
-
-    return callback(true)
+    const theObj = {
+      success: true,
+      currentStatus: {
+        update1: {
+          date: 'sada',
+          activity: 'sadas',
+          nextAction: 'sada',
+          complete: true
+        },
+        update2:{
+          date: '',
+          activity: '',
+          nextAction: '',
+          complete: false
+        },
+        update3: {
+          date: '',
+          activity: '',
+          nextAction: '',
+          complete: false
+        },
+        leadComplete: false
+      }
+    }
+    return callback(theObj);
     /*
     axios.post(`http://localhost:3010/api/updateLead`, {leadid: leadid})
       .then( response => {

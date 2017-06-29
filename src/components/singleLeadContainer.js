@@ -12,6 +12,9 @@ class SingleLeadComponent extends Component {
     super(props);
     this.state = {
       update1: {},
+      update2: {},
+      update3: {},
+      leadComplete: false
     };
 
     this.update1DateChange = this.update1DateChange.bind(this);
@@ -24,15 +27,25 @@ class SingleLeadComponent extends Component {
     if(!localStorage['mecLoggedIn']){
       console.log('Not logged in')
     }
-    //get lead info
-    LeadsApi.getLeadById(this.state.leadid, resp => {
-      console.log(resp)
-    });
-
-
+    //set state param for current lead ID
     this.setState({
-      ...this.state,
       leadid: this.props.match.params.id
+    }, () => {
+      //get lead info and add to state
+      LeadsApi.getLeadById(this.state.leadid, resp => {
+        this.setState({
+          update1: {
+            ...resp.currentStatus.update1
+          },
+          update2: {
+            ...resp.currentStatus.update2
+          },
+          update3: {
+            ...resp.currentStatus.update3
+          },
+          leadComplete: resp.currentStatus.leadComplete
+        });
+      });
     })
 
   }
@@ -66,9 +79,20 @@ class SingleLeadComponent extends Component {
     console.log(this.state)
     //axios request
     LeadsApi.submitLead(this.state.leadid, 'update1', this.state.update1, resp => {
-      console.log(resp)
+      if(resp.success){
+        this.setState({
+          update1: {
+            ...resp.currentStatus.update1
+          },
+          update2: {
+            ...resp.currentStatus.update2
+          },
+          update3: {
+            ...resp.currentStatus.update3
+          }
+        });
+      }
     });
-
 
   }
 
@@ -85,7 +109,7 @@ class SingleLeadComponent extends Component {
                <th className='cellBorder'>Next Action Requirements</th>
                <th></th>
              </tr>
-             <tr>
+             <tr className={this.state.update1.complete ? 'completeRow' : ''}>
                <td>
                  <div className='updateBlock'>UPDATE1</div>
                </td>
@@ -99,7 +123,11 @@ class SingleLeadComponent extends Component {
                  <input type="text" value={this.state.update1.nextAction || ''} onChange={this.update1nextActionChange}  />
                </td>
                <td className="center">
-                 <button className='btn updateBtn' onClick={this.handleSubmit1}>Submit update</button>
+                {this.state.update1.complete ? (
+                  <img className='tick' src={require('./images/completedtick.png')}/>
+                ) : (
+                  <button className='btn updateBtn' onClick={this.handleSubmit1}>Submit update</button>
+                )}
                </td>
              </tr>
             </table>

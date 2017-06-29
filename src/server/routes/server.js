@@ -7,11 +7,9 @@ var mongodb   = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 
 
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 
 
 
