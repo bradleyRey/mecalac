@@ -7,7 +7,6 @@ import DashboardContainer from './dashboardContainer'
 import TitleAboveTable from './dashboardContainer'
 
 import LeadsApi from '../api/leads'
-import * as data from '../server/leads.json'
 
 class SingleLeadComponent extends Component {
   constructor(props){

@@ -172,7 +172,7 @@ img.bg{
 .completeLeadBtn{
   width: 100%;
   margin-bottom: 80px;
-
+  display: block;
 }
 
 

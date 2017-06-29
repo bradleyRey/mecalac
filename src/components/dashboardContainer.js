@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
 
 import '../App.css';
 import LeadsApi from '../api/leads'
-import * as data from '../server/leads.json'
 
 
 class DashboardContainer extends Component {
@@ -25,6 +24,7 @@ class DashboardContainer extends Component {
 
     //api call
     LeadsApi.getLeads(this.state.userdata.dealerid, leads => {
+      console.log(leads)
       this.setState({
         leads: leads.data
       }, function(){
@@ -50,16 +50,20 @@ class DashboardContainer extends Component {
 
 function getNewData(data) {
   var rows = [];
+  if(data.length > 0){
+
   for (var i = 0; i < data.length; i++) {
     var updateStatus = 'Not started'
-    if(data[i].Status.update1.complete){
-      updateStatus = 'Update 1 submitted'
-    }
-    if(data[i].Status.update2.complete){
-      updateStatus = 'Update 2 submitted'
-    }
-    if(data[i].Status.update3.complete){
-      updateStatus = 'Update 3 submitted'
+    if(typeof data[i].Status === 'object'){
+      if(data[i].Status.update1.complete){
+        updateStatus = 'Update 1 submitted'
+      }
+      if(data[i].Status.update2.complete){
+        updateStatus = 'Update 2 submitted'
+      }
+      if(data[i].Status.update3.complete){
+        updateStatus = 'Update 3 submitted'
+      }
     }
 
     //if()
@@ -75,6 +79,8 @@ function getNewData(data) {
         <td><Link to={`/viewlead/${data[i].Lead_Id}`} className='btn updateBtn'>Update Here</Link></td>
       </tr>
     );
+  }
+
   }
   return (
     <table className="dashboardTable">

@@ -66,12 +66,14 @@ function getSingleLeadById(leadid){
 app.post('/api/login',function(req,res){
   var resp = 'false';
   userData.forEach( (element) => {
+
     if((element.username == req.body.username) && (element.password == req.body.password)){
       resp = {
         auth: 'true',
         userdata: element
       }
     }
+
   })
   res.status('201').send(resp);
   res.end()
@@ -100,7 +102,7 @@ app.post('/api/getDealerNames',function(req,res){
     for(i=0; i<resultNames.length; i++){
       dealerStore.push(resultNames[i].username)
     }
-    
+
     console.log(dealerStore)
 
       //console.log(dealerStore,'djfskdjn')
@@ -132,23 +134,22 @@ app.post('/api/updateLead',function(req,res){
   var updateType = req.body.updateType
   leadid = parseInt(leadid)
   const updateData = req.body.updateData
-  console.log(updateData)
   getSingleLeadById(leadid).then(resp => {
     if(resp.length > 0){
-      console.log(resp)
-      console.log('ARR')
-      resp[0].Status = updateData;
       //mark each relevant update as complete
       if(updateType == 'update1'){
-        resp[0].Status.update1.complete == true
+        updateData.update1.complete = 'true'
       }
       if(updateType == 'update2'){
-        resp[0].Status.update2.complete == true
+        updateData.update2.complete = 'true'
       }
-      if(updateType == 'update3'){
-        resp[0].Status.update3.complete == true
-        resp[0].Status.leadComplete == true
+      if(updateType == 'completeLead'){
+        updateData.update3.complete = 'true'
+        updateData.leadComplete = 'true'
       }
+
+      resp[0].Status = updateData;
+      console.log(resp[0])
       var dbz = db.collection('leads').update({Lead_Id: leadid}, resp[0], true, function(err, result){
         if(!err){
           res.send({

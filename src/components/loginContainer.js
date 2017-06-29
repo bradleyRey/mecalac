@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import * as data from '../server/leads.json';
 import { Redirect } from 'react-router'
 import TopHeaderComponent from './topHeaderComponent'
 
