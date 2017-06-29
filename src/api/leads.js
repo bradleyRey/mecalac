@@ -4,11 +4,11 @@ import * as data from '../server/leads.json'
 class LeadsApi {
 
   static getLeads(dealerid, callback){
-    axios.post(`http://localhost:3010/api`, {dealerid: dealerid})
+    axios.post(`http://localhost:3010/api/getLeadsById`, {dealerid: dealerid})
       .then( response => {
         setTimeout(function(){
-          //return callback(response)
-          return callback(data)
+          console.log()
+          return callback(response)
         },2000)
       })
   }
