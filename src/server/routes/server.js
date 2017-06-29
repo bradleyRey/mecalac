@@ -93,6 +93,22 @@ app.post('/api/getLeadsById',function(req,res){
     res.send(results);
   });
 });
+app.post('/api/getDealerNames',function(req,res){
+  db.collection('userData').find().toArray((err,resultNames)=>{
+  //  console.log(resultNames)
+    dealerStore=[]
+    for(i=0; i<resultNames.length; i++){
+      dealerStore.push(resultNames[i].username)
+    }
+    console.log(dealerStore)
+
+      //console.log(dealerStore,'djfskdjn')
+    //console.log(dealNames)
+    //make empty array
+    //loop throigh results
+    //push names to array
+  })
+})
 
 app.post('/api/getSingleLeadById',function(req,res){
   var leadid = req.body.leadid
@@ -102,6 +118,8 @@ app.post('/api/getSingleLeadById',function(req,res){
   }
   db.collection('leads').find(query).toArray((err, results) => {
     res.send(results);
+
+
   });
 });
 
