@@ -40,18 +40,22 @@ class SingleLeadComponent extends Component {
     }, () => {
       //get lead info and add to state
       LeadsApi.getLeadById(this.state.leadid, resp => {
-        this.setState({
-          update1: {
-            ...resp.currentStatus.update1
-          },
-          update2: {
-            ...resp.currentStatus.update2
-          },
-          update3: {
-            ...resp.currentStatus.update3
-          },
-          leadComplete: resp.currentStatus.leadComplete
-        });
+        console.log("Get lead response: ", resp)
+        if(resp.data.length > 0 && resp.data[0].Status != 'None' ){
+          this.setState({
+            update1: {
+              ...resp.data[0].status.update1
+            },
+            update2: {
+              ...resp.data[0].status.update2
+            },
+            update3: {
+              ...resp.data[0].status.update3
+            },
+            leadComplete: resp.data[0].status.leadComplete
+          });
+
+        }
       });
     })
 
@@ -142,19 +146,24 @@ class SingleLeadComponent extends Component {
     console.log(this.state)
     //axios request
     LeadsApi.submitLead(this.state.leadid, updateNum, this.state, resp => {
-      if(resp.success){
+      console.log("Submit response: ", resp)
+      if(resp.data.success){
         this.setState({
           update1: {
-            ...resp.currentStatus.update1
+            ...resp.data.newState.Status.update1
           },
           update2: {
-            ...resp.currentStatus.update2
+            ...resp.data.newState.Status.update2
           },
           update3: {
-            ...resp.currentStatus.update3
+            ...resp.data.newState.Status.update3
           },
-          leadComplete: resp.currentStatus.leadComplete
+          leadComplete: resp.data.newState.Status.leadComplete
         });
+      }else{
+        this.setState({
+          error: resp.data.error
+        })
       }
     });
 
@@ -165,6 +174,12 @@ class SingleLeadComponent extends Component {
       <div>
           <DashboardHeaderComponent />
           <div className="maxWidth">
+            {this.state.error ? (
+              <div className="errorWrap">{this.state.error}</div>
+            ) : (
+              <div></div>
+            )}
+
             <table className='viewLeadTable'>
              <tr className='TableHeaderSingle'>
                <th className='cellBorder'></th>

@@ -45,6 +45,14 @@ img.bg{
 .lightgreyText{
   color: #cccccc;
 }
+.errorWrap{
+  padding: 12px 4px;
+  background: #ef1515;
+  color: #ffffff;
+  width: 80%;
+  margin: 20px auto 0px;
+  text-align: center;
+}
 
 
 

@@ -6,12 +6,9 @@ var app        = express();
 var mongodb   = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 
-
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-
 
 var db;
 
@@ -55,7 +52,18 @@ const userData = [
   {"username": "willowbrook", "password": "password1"},
 ]
 
-app.post('/api',function(req,res){
+//Helper functions below
+function getSingleLeadById(leadid){
+  leadid = parseInt(leadid)
+  var query = {
+    Lead_Id: leadid
+  }
+  return db.collection('leads').find(query).toArray()
+}
+
+
+//API endpoints below
+app.post('/api/login',function(req,res){
   var resp = 'false';
   userData.forEach( (element) => {
     if((element.username == req.body.username) && (element.password == req.body.password)){
@@ -69,14 +77,11 @@ app.post('/api',function(req,res){
   res.end()
 });
 
-
 app.post('/api/getLeads',function(req,res){
   db.collection('leads').find().toArray((err, results) => {
     res.send(results)
   })
-
 });
-
 
 app.post('/api/getLeadsById',function(req,res){
   var dealerid = req.body.dealerid
@@ -89,25 +94,61 @@ app.post('/api/getLeadsById',function(req,res){
   });
 });
 
+app.post('/api/getSingleLeadById',function(req,res){
+  var leadid = req.body.leadid
+  leadid = parseInt(leadid)
+  var query = {
+    Lead_Id: leadid
+  }
+  db.collection('leads').find(query).toArray((err, results) => {
+    res.send(results);
+  });
+});
+
+
+
 
 app.post('/api/updateLead',function(req,res){
-  //console.log(req)
-  const update = {
-    'update1': {
-      'date': '',
-      'activity': '',
-      'nextAction': ''
-    },
-    'update2':{
-      'date': '',
-      'activity': '',
-      'nextAction': ''
-    },
-    'update3': {
-      'date': '',
-      'activity': '',
-      'nextAction': ''
+  var leadid = req.body.leadid
+  var updateType = req.body.updateType
+  leadid = parseInt(leadid)
+  const updateData = req.body.updateData
+  console.log(updateData)
+  getSingleLeadById(leadid).then(resp => {
+    if(resp.length > 0){
+      console.log(resp)
+      console.log('ARR')
+      resp[0].Status = updateData;
+      //mark each relevant update as complete
+      if(updateType == 'update1'){
+        resp[0].Status.update1.complete == true
+      }
+      if(updateType == 'update2'){
+        resp[0].Status.update2.complete == true
+      }
+      if(updateType == 'update3'){
+        resp[0].Status.update3.complete == true
+        resp[0].Status.leadComplete == true
+      }
+      var dbz = db.collection('leads').update({Lead_Id: leadid}, resp[0], true, function(err, result){
+        if(!err){
+          res.send({
+            success: true,
+            newState: resp[0]
+          });
+        }else{
+          //if error, send back original data
+          res.send({
+            success: false,
+            error: 'There seems to be a database issue - please contact us.'
+          });
+        }
+      })
+    }else{
+      res.send({
+        success: false,
+        error: 'There seems to be something wrong, please try again.'
+      })
     }
-  }
-  db.collection('leads').insert(update)
+  })
 })
