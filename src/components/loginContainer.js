@@ -67,15 +67,17 @@ class LoginContainer extends Component {
             <h3 className="orangeText">ENTER YOUR LOGIN</h3>
             <h3 className="lightgreyText">DETAILS BELOW</h3>
             <form>
-              <label>
-                Username:
-                <input type="text" name="username" value={this.state.username} onChange={this.handleInputChange}/>
-              </label>
-              <label>
-                Password:
-                <input type="password" name="password" value={this.state.password} onChange={this.handleInputChange}/>
-              </label>
-                <input className="btn loginBtn" type="submit" value="Submit" onClick={(e) => this.handleSubmit(e)} />
+              <div>
+                <label>
+                  <input className='fieldBox' type="text" name="username" placeholder='Select your dealer'value={this.state.username} onChange={this.handleInputChange}/>
+                </label>
+              </div>
+              <div>
+                <label>
+                  <input className='fieldBox' type="password" name="password" placeholder='Password'value={this.state.password} onChange={this.handleInputChange}/>
+                </label>
+              </div>
+                <input className="btn loginBtn" type="submit" value="Login" onClick={(e) => this.handleSubmit(e)} />
             </form>
             <div className="formResponse">
             {this.state.errorMessage ? (
