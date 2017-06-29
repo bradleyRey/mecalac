@@ -61,7 +61,7 @@ function getNewData(data) {
         <td>{data[i].Company}</td>
         <td>{data[i].Status}</td>
         <td className='center'><img className='tick' src={require('./images/completedtick.png')}/></td>
-        <td><Link to={`/viewlead/${data[i].LeadId}`} className='btn updateBtn'>Update Here</Link></td>
+        <td><Link to={`/viewlead/${data[i].Lead_Id}`} className='btn updateBtn'>Update Here</Link></td>
       </tr>
     );
   }

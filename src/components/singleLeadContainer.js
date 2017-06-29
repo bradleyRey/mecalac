@@ -20,7 +20,14 @@ class SingleLeadComponent extends Component {
     this.update1DateChange = this.update1DateChange.bind(this);
     this.update1ActivityChange = this.update1ActivityChange.bind(this);
     this.update1nextActionChange = this.update1nextActionChange.bind(this);
-    this.handleSubmit1 = this.handleSubmit1.bind(this);
+    this.update2DateChange = this.update2DateChange.bind(this);
+    this.update2ActivityChange = this.update2ActivityChange.bind(this);
+    this.update2nextActionChange = this.update2nextActionChange.bind(this);
+    this.update3DateChange = this.update3DateChange.bind(this);
+    this.update3ActivityChange = this.update3ActivityChange.bind(this);
+    this.update3nextActionChange = this.update3nextActionChange.bind(this);
+    this.update3ClosingChange = this.update3ClosingChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
   }
   componentWillMount(){
@@ -33,18 +40,22 @@ class SingleLeadComponent extends Component {
     }, () => {
       //get lead info and add to state
       LeadsApi.getLeadById(this.state.leadid, resp => {
-        this.setState({
-          update1: {
-            ...resp.currentStatus.update1
-          },
-          update2: {
-            ...resp.currentStatus.update2
-          },
-          update3: {
-            ...resp.currentStatus.update3
-          },
-          leadComplete: resp.currentStatus.leadComplete
-        });
+        console.log("Get lead response: ", resp)
+        if(resp.data.length > 0 && resp.data[0].Status != 'None' ){
+          this.setState({
+            update1: {
+              ...resp.data[0].status.update1
+            },
+            update2: {
+              ...resp.data[0].status.update2
+            },
+            update3: {
+              ...resp.data[0].status.update3
+            },
+            leadComplete: resp.data[0].status.leadComplete
+          });
+
+        }
       });
     })
 
@@ -74,23 +85,85 @@ class SingleLeadComponent extends Component {
       }
     });
   }
+  update2DateChange(e) {
+    this.setState({
+      update2: {
+        ...this.state.update2,
+        date: e.target.value,
+       }
+    });
+  }
+  update2ActivityChange(e) {
+    this.setState({
+      update2: {
+        ...this.state.update2,
+        activity: e.target.value
+      }
+    });
+  }
+  update2nextActionChange(e) {
+    this.setState({
+      update2: {
+        ...this.state.update2,
+        nextAction: e.target.value
+      }
+    });
+  }
+  update3DateChange(e) {
+    this.setState({
+      update3: {
+        ...this.state.update3,
+        date: e.target.value,
+       }
+    });
+  }
+  update3ActivityChange(e) {
+    this.setState({
+      update3: {
+        ...this.state.update3,
+        activity: e.target.value
+      }
+    });
+  }
+  update3nextActionChange(e) {
+    this.setState({
+      update3: {
+        ...this.state.update3,
+        nextAction: e.target.value
+      }
+    });
+  }
+  update3ClosingChange(e) {
+    this.setState({
+      update3: {
+        ...this.state.update3,
+        closing: e.target.value
+      }
+    });
+  }
 
-  handleSubmit1() {
+  handleSubmit(updateNum) {
     console.log(this.state)
     //axios request
-    LeadsApi.submitLead(this.state.leadid, 'update1', this.state.update1, resp => {
-      if(resp.success){
+    LeadsApi.submitLead(this.state.leadid, updateNum, this.state, resp => {
+      console.log("Submit response: ", resp)
+      if(resp.data.success){
         this.setState({
           update1: {
-            ...resp.currentStatus.update1
+            ...resp.data.newState.Status.update1
           },
           update2: {
-            ...resp.currentStatus.update2
+            ...resp.data.newState.Status.update2
           },
           update3: {
-            ...resp.currentStatus.update3
-          }
+            ...resp.data.newState.Status.update3
+          },
+          leadComplete: resp.data.newState.Status.leadComplete
         });
+      }else{
+        this.setState({
+          error: resp.data.error
+        })
       }
     });
 
@@ -101,17 +174,23 @@ class SingleLeadComponent extends Component {
       <div>
           <DashboardHeaderComponent />
           <div className="maxWidth">
+            {this.state.error ? (
+              <div className="errorWrap">{this.state.error}</div>
+            ) : (
+              <div></div>
+            )}
+
             <table className='viewLeadTable'>
              <tr className='TableHeaderSingle'>
                <th className='cellBorder'></th>
                <th className='cellBorder'>Date</th>
-               <th className='cellBorder'>Task Taken Place</th>
+               <th className='cellBorder'>Activity Taken Place</th>
                <th className='cellBorder'>Next Action Requirements</th>
                <th></th>
              </tr>
              <tr className={this.state.update1.complete ? 'completeRow' : ''}>
                <td>
-                 <div className='updateBlock'>UPDATE1</div>
+                 <div className='updateBlock'>UPDATE 1</div>
                </td>
                <td>
                  <input type="text" value={this.state.update1.date || ''} onChange={this.update1DateChange} />
@@ -126,11 +205,55 @@ class SingleLeadComponent extends Component {
                 {this.state.update1.complete ? (
                   <img className='tick' src={require('./images/completedtick.png')}/>
                 ) : (
-                  <button className='btn updateBtn' onClick={this.handleSubmit1}>Submit update</button>
+                  <button className='btn updateBtn' onClick={() => this.handleSubmit('update1')}>Submit update</button>
                 )}
                </td>
              </tr>
+             <tr className={(this.state.update2.complete ? 'completeRow' : '') + (!this.state.update1.complete ? 'lockedRow' : '')}>
+               <td>
+                 <div className='updateBlock'>UPDATE 2</div>
+               </td>
+               <td>
+                 <input type="text" value={this.state.update2.date || ''} onChange={this.update2DateChange} />
+               </td>
+               <td>
+                 <input type="text" value={this.state.update2.activity || ''} onChange={this.update2ActivityChange}  />
+               </td>
+               <td>
+                 <input type="text" value={this.state.update2.nextAction || ''} onChange={this.update2nextActionChange}  />
+               </td>
+               <td className="center">
+                {this.state.update2.complete ? (
+                  <img className='tick' src={require('./images/completedtick.png')}/>
+                ) : (
+                  <button className='btn updateBtn' onClick={() => this.handleSubmit('update2')}>Submit update</button>
+                )}
+               </td>
+             </tr>
+             <tr className={(this.state.update3.complete ? 'completeRow' : '') + (!this.state.update2.complete ? 'lockedRow' : '')}>
+               <td>
+                 <div className='updateBlock'>UPDATE 3</div>
+               </td>
+               <td>
+                 <input type="text" value={this.state.update3.date || ''} onChange={this.update3DateChange} />
+               </td>
+               <td>
+                 <input type="text" value={this.state.update3.activity || ''} onChange={this.update3ActivityChange}  />
+               </td>
+               <td>
+                 <input type="text" value={this.state.update3.nextAction || ''} onChange={this.update3nextActionChange}  />
+               </td>
+               <td className="center closingCommentTd">
+                <div className="closingCommentHead">Closing comment</div>
+                  <input type="text" value={this.state.update3.closing || ''} onChange={this.update3ClosingChange}  />
+               </td>
+             </tr>
             </table>
+            {this.state.update3.complete ? (
+              <button className="btn completeLeadBtn" onClick={() => this.handleSubmit('completeLead')}>Complete Lead</button>
+            ) : (
+              <p></p>
+            )}
           </div>
       </div>
     );
