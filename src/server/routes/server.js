@@ -100,6 +100,7 @@ app.post('/api/getDealerNames',function(req,res){
     for(i=0; i<resultNames.length; i++){
       dealerStore.push(resultNames[i].username)
     }
+    
     console.log(dealerStore)
 
       //console.log(dealerStore,'djfskdjn')
