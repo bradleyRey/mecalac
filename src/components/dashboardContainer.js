@@ -26,7 +26,7 @@ class DashboardContainer extends Component {
     //api call
     LeadsApi.getLeads(this.state.userdata.dealerid, leads => {
       this.setState({
-        testData: leads
+        testData: leads.data
       }, function(){
         console.log('STATE', this.state);
       })
@@ -54,10 +54,10 @@ function getNewData(data) {
     //if()
     rows.push(
       <tr>
-        <td>{data[i].Title + " " + data[i].FirstName + " " + data[i].LastName} </td>
-        <td>{data[i].EmailAddress}</td>
-        <td>{data[i].TelephoneNumber}</td>
-        <td>{data[i].MobileNumber}</td>
+        <td>{data[i].Title + " " + data[i]['First Name'] + " " + data[i]['Last Name']} </td>
+        <td>{data[i]['Email Address']}</td>
+        <td>{data[i]['Telephone Number']}</td>
+        <td>{data[i]['Mobile Number']}</td>
         <td>{data[i].Company}</td>
         <td>{data[i].Status}</td>
         <td className='center'><img className='tick' src={require('./images/completedtick.png')}/></td>

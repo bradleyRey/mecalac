@@ -19,16 +19,15 @@ var db;
 mongodb.MongoClient.connect('mongodb://indigo-brad:indigo_river@ds141232.mlab.com:41232/mecalac', (err, database) => {
   if (err) {
     console.log(err)
-
     process.exit(1);
-}
+  }
   db = database;
   console.log('Database connection is ready')
 
   var server= app.listen(process.env.PORT || 3010, function () {
     var port = server.address().port;
     console.log("App now running on port", port);
-});
+  });
 });
 
 //this is to eventually be a mongodb
@@ -72,15 +71,15 @@ app.post('/api',function(req,res){
 
 
 app.post('/api/getLeads',function(req,res){
-
   db.collection('leads').find().toArray((err, results) => {
-    console.log(results)
     res.send(results)
   })
 
-})
+});
+
+
 app.post('/api/getLeadsById',function(req,res){
-  var dealerid = req.body.DealerId
+  var dealerid = req.body.dealerid
   dealerid = parseInt(dealerid)
   var query = {
     DealerId: dealerid
@@ -89,6 +88,8 @@ app.post('/api/getLeadsById',function(req,res){
     res.send(results);
   });
 });
+
+
 app.post('/api/updateLead',function(req,res){
   //console.log(req)
   const update = {
@@ -109,6 +110,4 @@ app.post('/api/updateLead',function(req,res){
     }
   }
   db.collection('leads').insert(update)
-  console.log(res)
 })
-//starting server
