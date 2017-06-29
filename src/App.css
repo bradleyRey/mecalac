@@ -174,6 +174,9 @@ img.bg{
   margin-bottom: 80px;
   display: block;
 }
+button.completeLeadBtn{
+  width: 100%;
+}
 
 
 
