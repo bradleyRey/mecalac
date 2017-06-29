@@ -20,7 +20,7 @@ class LeadsApi {
           date: 'sada',
           activity: 'sadas',
           nextAction: 'sada',
-          complete: true
+          complete: false
         },
         update2:{
           date: '',
@@ -32,6 +32,7 @@ class LeadsApi {
           date: '',
           activity: '',
           nextAction: '',
+          closing: '',
           complete: false
         },
         leadComplete: false
@@ -64,15 +65,16 @@ class LeadsApi {
           date: '',
           activity: '',
           nextAction: '',
-          complete: false
+          complete: true
         },
         update3: {
           date: '',
           activity: '',
           nextAction: '',
-          complete: false
+          closing: '',
+          complete: true
         },
-        leadComplete: false
+        leadComplete: true
       }
     }
     return callback(theObj);
