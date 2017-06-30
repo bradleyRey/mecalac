@@ -43,6 +43,16 @@ const MyRoutes = () => (
           )
         )
       }}/>
+      <Route path='/logout' render={() => {
+        localStorage.removeItem('mecLoggedIn');
+        localStorage.removeItem('mecDealerId');
+        localStorage.removeItem('mecDealerName');
+        return(
+          <LoginContainer />
+        )
+
+      }}/>
+
       </Switch>
     </main>
 )

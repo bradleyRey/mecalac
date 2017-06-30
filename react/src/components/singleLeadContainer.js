@@ -176,7 +176,7 @@ class SingleLeadComponent extends Component {
             {this.state.error ? (
               <div className="errorWrap">{this.state.error}</div>
             ) : (
-              <div></div>
+              null
             )}
 
             <table className='viewLeadTable'>
@@ -251,12 +251,12 @@ class SingleLeadComponent extends Component {
             {(this.state.update2.complete && !this.state.leadComplete) ? (
               <button className="btn completeLeadBtn" onClick={() => this.handleSubmit('completeLead')}>Complete Lead</button>
             ) : (
-              <span></span>
+              null
             )}
             {this.state.leadComplete ? (
               <Link to={{pathname: `/dashboard`, state: this.state}} className="btn completeLeadBtn">Back to leads</Link>
             ) : (
-              <span></span>
+              null
             )}
           </div>
       </div>

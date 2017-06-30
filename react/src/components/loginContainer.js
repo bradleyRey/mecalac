@@ -82,7 +82,7 @@ class LoginContainer extends Component {
             {this.state.errorMessage ? (
               <p>{this.state.errorMessage}</p>
             ) : (
-              <p></p>
+              null
             )}
             {this.state.isLoggedIn ? (
               <Redirect to={{
@@ -90,7 +90,7 @@ class LoginContainer extends Component {
                 state: this.state
               }} />
             ) : (
-              <p></p>
+              null
             )}
             </div>
 
