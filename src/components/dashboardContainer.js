@@ -5,7 +5,6 @@
 import React, { Component } from 'react';
 import DashboardHeaderComponent from './dashboardHeaderComponent'
 import { Link } from 'react-router-dom'
-
 import '../App.css';
 import LeadsApi from '../api/leads'
 
