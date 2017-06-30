@@ -119,9 +119,12 @@ class DropdownComponent extends Component {
     super(props)
     this.state = {chooseValue:'option1'}
 
-  /*  LeadsApi.viewDealers(this.state.dealerNames, names => {
+
+    LeadsApi.viewDealers(this.state.dealerNames, names => {
       console.log(names)
-    })*/
+      this.state.dealerNames = names.data
+      // this.state.dealerNames =
+    })
   }
 
 
@@ -132,9 +135,11 @@ class DropdownComponent extends Component {
 
     render(){
       return(
+
         <div>
+          <p>{this.state.dealerNames}</p>
           <select className='fieldBox' id='dealers' value={this.state.chooseValue} onChange={this.handleingChange}>
-            <option value='test2'>test2</option>
+            <option value={'yo'}></option>
             <option value='test3'>test3</option>
             <option value='test4'>test4</option>
             <option value='test5'>test5</option>
