@@ -11,26 +11,20 @@ class LoginContainer extends Component {
       username: '',
       password: ''
     };
-
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.assignChosenDealer = this.assignChosenDealer.bind(this);
   }
-
-  componentDidMount(){
-    console.log()
-  }
-
   handleSubmit(e){
     e.preventDefault();
+    console.log(this.state)
     var names = {
-      'username': this.state.username,
+      'username': this.state.chosenDealer,
       'password': this.state.password
     }
     axios.post(`http://localhost:3010/api/login`, names)
       .then( response => {
         if(response.data.auth){
-
-          //browserHistory.push('/dashboard');
           localStorage.setItem('mecLoggedIn', true);
           localStorage.setItem('mecDealerId', response.data.userdata.dealerid);
           localStorage.setItem('mecDealerName', response.data.userdata.username);
@@ -47,7 +41,6 @@ class LoginContainer extends Component {
         }
     })
   }
-
   handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -56,11 +49,14 @@ class LoginContainer extends Component {
       [name]: value
     });
   }
+  assignChosenDealer(dealer){
 
-
+    this.setState({
+      chosenDealer: dealer
+    });
+  }
 
   render(){
-
     return(
         <div className="loginPage">
           <TopHeaderComponent />
@@ -71,25 +67,18 @@ class LoginContainer extends Component {
           </div>
             <h3 className="orangeText">ENTER YOUR LOGIN</h3>
             <h3 className="lightgreyText">DETAILS BELOW</h3>
-            <form>
+            <form id="selectInputs">
               <div>
-                <DropdownComponent />
+                <DropdownComponent chosenDealer={this.assignChosenDealer}/>
               </div>
               <div>
                 <label className='userField'>
-                  <input className='fieldBox' type="username" name="username" placeholder='username'value={this.state.username} onChange={this.handleInputChange}/>
+                  <input className='loginInput' type="password" name="password" placeholder='Password'value={this.state.password} onChange={this.handleInputChange}/>
                 </label>
               </div>
-              <div>
-                <label className='userField'>
-                  <input className='fieldBox' type="password" name="password" placeholder='Password'value={this.state.password} onChange={this.handleInputChange}/>
-                </label>
-              </div>
+              <input className="btn loginBtn" type="submit" value="Login" onClick={(e) => this.handleSubmit(e)} />
 
             </form>
-            <div>
-              <input className="btn loginBtn" type="submit" value="Login" onClick={(e) => this.handleSubmit(e)} />
-            </div>
             <div className="formResponse">
             {this.state.errorMessage ? (
               <p>{this.state.errorMessage}</p>
@@ -117,31 +106,37 @@ class LoginContainer extends Component {
 class DropdownComponent extends Component {
   constructor(props) {
     super(props)
-    this.state = {chooseValue:'option1'}
-
-  /*  LeadsApi.viewDealers(this.state.dealerNames, names => {
-      console.log(names)
-    })*/
-  }
-
-
-  handleingChange(e){
-    this.setState({chooseValue:e.target.value})
-  }
-
-
-    render(){
-      return(
-        <div>
-          <select className='fieldBox' id='dealers' value={this.state.chooseValue} onChange={this.handleingChange}>
-            <option value='test2'>test2</option>
-            <option value='test3'>test3</option>
-            <option value='test4'>test4</option>
-            <option value='test5'>test5</option>
-          </select>
-        </div>
-      );
+    this.state = {
+      chosenValue: '',
+      dealers: []
     }
+    this.handleChange = this.handleChange.bind(this);
   }
+  componentWillMount(){
+    LeadsApi.viewDealers( names => {
+      this.setState({
+        dealers: names.data
+      })
+    })
+  }
+  handleChange(e){
+    //pass values up to parent
+    this.props.chosenDealer(e.target.value)
+    this.setState({chosenValue: e.target.value});
+
+  }
+  render(){
+    return(
+      <div>
+        <select className='loginInput' id='dealers' value={this.state.chosenValue} onChange={this.handleChange}>
+          <option>Please select your dealer</option>
+          {this.state.dealers.map(function(object, i){
+            return <option value={object}>{object}</option>;
+          })}
+        </select>
+      </div>
+    );
+  }
+}
 
 export default LoginContainer;
