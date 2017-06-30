@@ -77,6 +77,11 @@ class LoginContainer extends Component {
               </div>
               <div>
                 <label className='userField'>
+                  <input className='fieldBox' type="username" name="username" placeholder='username'value={this.state.username} onChange={this.handleInputChange}/>
+                </label>
+              </div>
+              <div>
+                <label className='userField'>
                   <input className='fieldBox' type="password" name="password" placeholder='Password'value={this.state.password} onChange={this.handleInputChange}/>
                 </label>
               </div>
@@ -115,11 +120,13 @@ class DropdownComponent extends Component {
   constructor(props) {
     super(props)
     this.state = {chooseValue:'option1'}
-    }
 
     LeadsApi.viewDealers(this.state.dealerNames, names => {
       console.log(names)
     })
+    }
+
+
 
     handleingChange(e){
       this.setState({chooseValue:e.target.value})
@@ -129,7 +136,7 @@ class DropdownComponent extends Component {
     render(){
       return(
         <div>
-          <select className='fieldBox' value={this.state.chooseValue} onChange={this.handleingChange}>
+          <select className='fieldBox' id='dealers' value={this.state.chooseValue} onChange={this.handleingChange}>
             <option value='test2'>test2</option>
             <option value='test3'>test3</option>
             <option value='test4'>test4</option>

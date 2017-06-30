@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import DashboardHeaderComponent from './dashboardHeaderComponent'
 import { Link } from 'react-router-dom'
-<<<<<<< HEAD
-=======
 import { browserHistory } from 'react-router'
-
->>>>>>> 4157d1bf979ad67a6d517f6b7a5e280a08a1e2a0
 import '../App.css';
 import DashboardContainer from './dashboardContainer'
 import TitleAboveTable from './dashboardContainer'
