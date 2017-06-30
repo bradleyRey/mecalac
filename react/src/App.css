@@ -83,7 +83,7 @@ img.bg{
   padding-right: 32px;
   position:absolute;
   margin-left:500px;
-  top: 497px;
+  top: 485px;
 
 
 }
@@ -122,15 +122,23 @@ img.bg{
     width: 100%;
     background: #fff;
     border: 1px solid #ccc;
-    padding: 20px;
+    padding: 10px;
     color: #555;
     font: 95% Arial, Helvetica, sans-serif;
     height:30px;
     padding-top:20px;
     margin-bottom: 10px;
-    margin-top: 7px
+    margin-top: 7px;
+    border-radius: 5px
 }
+input::placeholder, {
+  color:black;
 
+}
+#dealers{
+  height:30px
+
+}
 .userField{
   background-color: grey;
 }

@@ -81,6 +81,7 @@ app.post('/api/getDealerNames',function(req,res){
       dealerStore.push(resultNames[i].username)
     }
     console.log(dealerStore)
+    res.send(dealerStore)
   })
 })
 

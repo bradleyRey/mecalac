@@ -1,6 +1,8 @@
 [
   {"username": "brad", "password": "password", "dealerid": "1"},
   {"username": "jay", "password": "password1", "dealerid": "2"},
+  {"username": "andy", "password": "slimyiron33", "dealerid": "3"},
+  {"username": "allison", "password": "blackowl70", "dealerid": "3"},
   {"username": "balgownie", "password": "murkyolive68", "dealerid": "1" },
   {"username": "cambrian", "password": "curlymonth26", "dealerid": "2"},
   {"username": "ces", "password": "blackhat74", "dealerid": "3" },
@@ -16,5 +18,5 @@
   {"username": "scotia", "password": "fastspoon40", "dealerid": "13" },
   {"username": "sleator", "password": "redivory10", "dealerid": "14" },
   {"username": "thwhite", "password": "tinyrose44", "dealerid": "15" },
-  {"username": "willowbrook", "password": "supernest28", "dealerid": "16" }
+  {"username": "willowbrook", "password": "password1", "dealerid": "16" }
 ]
