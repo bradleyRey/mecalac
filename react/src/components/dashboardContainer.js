@@ -53,34 +53,46 @@ function getNewData(data) {
   var rows = [];
   if(data.length > 0){
 
-  for (var i = 0; i < data.length; i++) {
-    var updateStatus = 'Not started'
-    if(typeof data[i].Status === 'object'){
-      if(data[i].Status.update1.complete){
-        updateStatus = 'Update 1 submitted'
+    for (var i = 0; i < data.length; i++) {
+      var updateStatus = 'Not started'
+      var leadComplete = false;
+      if(typeof data[i].Status === 'object'){
+        if(data[i].Status.update1.complete){
+          updateStatus = 'Update 1 submitted'
+        }
+        if(data[i].Status.update2.complete){
+          updateStatus = 'Update 2 submitted'
+        }
+        if(data[i].Status.update3.complete){
+          updateStatus = 'Update 3 submitted'
+          leadComplete = true
+        }
       }
-      if(data[i].Status.update2.complete){
-        updateStatus = 'Update 2 submitted'
-      }
-      if(data[i].Status.update3.complete){
-        updateStatus = 'Update 3 submitted'
-      }
-    }
 
-    //if()
-    rows.push(
-      <tr>
-        <td>{data[i].Title + " " + data[i]['First Name'] + " " + data[i]['Last Name']} </td>
-        <td>{data[i]['Email Address']}</td>
-        <td>{data[i]['Telephone Number']}</td>
-        <td>{data[i]['Mobile Number']}</td>
-        <td>{data[i].Company}</td>
-        <td>{updateStatus}</td>
-        <td className='center'><img className='tick' src={require('./images/completedtick.png')}/></td>
-        <td><Link to={`/viewlead/${data[i].Lead_Id}`} className='btn updateBtn'>Update Here</Link></td>
-      </tr>
-    );
-  }
+      //if()
+      rows.push(
+        <tr className={leadComplete ? "leadComplete": null}>
+          <td>{data[i].Title + " " + data[i]['First Name'] + " " + data[i]['Last Name']} </td>
+          <td>{data[i]['Email Address']}</td>
+          <td>{data[i]['Telephone Number']}</td>
+          <td>{data[i]['Mobile Number']}</td>
+          <td>{data[i].Company}</td>
+          <td>{updateStatus}</td>
+          <td className='center'>
+            {leadComplete ? (
+              <img className='tick' src={require('./images/completedtick.png')}/>
+            ) : (
+              null
+            )}
+          </td>
+          {leadComplete ? (
+            <td><Link to={`/viewlead/${data[i].Lead_Id}`} className='btn updateBtn seeAction'>See actions</Link></td>
+          ) : (
+            <td><Link to={`/viewlead/${data[i].Lead_Id}`} className='btn updateBtn'>Update Here</Link></td>
+          )}
+        </tr>
+      );
+    }
 
   }
   return (
