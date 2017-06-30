@@ -42,9 +42,13 @@ img.bg{
 }
 .orangeText{
   color: #ffcc00;
+  font-family: 'intro_regular';
+  letter-spacing: -2px;
 }
 .lightgreyText{
   color: #cccccc;
+  font-family:'intro_regular';
+  letter-spacing: -2px;
 }
 .errorWrap{
   padding: 12px 4px;
@@ -76,7 +80,12 @@ img.bg{
   clear:both;
   display: block;
   padding-left: 35px;
-  padding-right: 35px;
+  padding-right: 32px;
+  position:absolute;
+  margin-left:500px;
+  top: 497px;
+
+
 }
 
 .Plantworx{
@@ -100,7 +109,7 @@ img.bg{
 
 }
 .fieldBox{
-  background-color: #F3F3F3;
+  background-color: #282828;
   border-style: none;
   -webkit-transition: all 0.30s ease-in-out;
     -moz-transition: all 0.30s ease-in-out;
@@ -112,19 +121,25 @@ img.bg{
     -moz-box-sizing: border-box;
     width: 100%;
     background: #fff;
-    margin-bottom: 4%;
     border: 1px solid #ccc;
-    padding: 5px;
+    padding: 20px;
     color: #555;
     font: 95% Arial, Helvetica, sans-serif;
-    height:30px
+    height:30px;
+    padding-top:20px;
+    margin-bottom: 10px;
+    margin-top: 7px
+}
+
+.userField{
+  background-color: grey;
 }
 
 .fieldBox:focus{
   box-shadow: 0 0 5px rgb(4,53,132);;
-   padding: 3%;
    border: 1px solid rgb(4,53,132);;
 }
+
 /* View Lead */
 .viewLeadTable{
   border-collapse: separate;
@@ -182,13 +197,6 @@ img.bg{
 button.completeLeadBtn{
   width: 100%;
 }
-
-
-
-
-
-
-
 
 .NEWone {
   font-size:100px;
@@ -259,6 +267,16 @@ button.completeLeadBtn{
   margin-top: 15px;
   margin-bottom: 15px;
 }
+
+.HeaderArrowSmallLogin{
+  height:30px;
+  width:35px;
+  z-index: -1;
+  margin-left: 5px;
+  margin-top: 10px;
+}
+
+
 
 
 .dashboardTable {

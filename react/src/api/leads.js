@@ -22,6 +22,12 @@ class LeadsApi {
     })
   }
 
+  static viewDealers(dealerNames, callback){
+    axios.post('http://localhost:3010/api/getDealerNames', {dealerNames: dealerNames})
+    .then( response => {
+      return callback(response)
+    })
+  }
 }
 
 export default LeadsApi
