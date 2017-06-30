@@ -1,8 +1,10 @@
-var express    = require('express');
-var bodyParser = require('body-parser');
-var cors       = require('cors')
-var app        = express();
-var mongodb   = require('mongodb');
+var express     = require('express');
+var bodyParser  = require('body-parser');
+var cors        = require('cors')
+var app         = express();
+var mongodb     = require('mongodb');
+var path        = require('path');
+
 const MongoClient = require('mongodb').MongoClient;
 
 app.get('*', (req, res) => {

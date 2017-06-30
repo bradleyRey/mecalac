@@ -10,6 +10,7 @@
     "moment": "^2.18.1",
     "mongodb": "^2.2.29",
     "mongoose": "^4.11.0",
+    "path": "0.12.7",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "react-router-dom": "^4.1.1"
