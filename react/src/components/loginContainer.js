@@ -25,7 +25,7 @@ class LoginContainer extends Component {
       'username': this.state.username,
       'password': this.state.password
     }
-    axios.post(`http://localhost:3010/api/login`, names)
+    axios.post(`/api/login`, names)
       .then( response => {
         if(response.data.auth){
 
