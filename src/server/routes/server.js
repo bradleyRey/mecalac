@@ -5,6 +5,10 @@ var app        = express();
 var mongodb   = require('mongodb');
 const MongoClient = require('mongodb').MongoClient;
 
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '..', 'build', 'index.html'));
+});
+
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
