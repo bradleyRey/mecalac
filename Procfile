@@ -1,1 +1,2 @@
-web: node src/server/routes/server.js
+web: npm run start
+web: npm run heroku-postbuild
