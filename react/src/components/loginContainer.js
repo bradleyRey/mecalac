@@ -115,9 +115,9 @@ class DropdownComponent extends Component {
     this.state = {chooseValue:'option1'}
     }
 
-    LeadsApi.viewDealers(this.state.dealerNames, names => {
+  /*  LeadsApi.viewDealers(this.state.dealerNames, names => {
       console.log(names)
-    })
+    })*/ 
 
     handleingChange(e){
       this.setState({chooseValue:e.target.value})
