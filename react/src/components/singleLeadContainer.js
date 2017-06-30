@@ -38,7 +38,7 @@ class SingleLeadComponent extends Component {
     }
     //set state param for current lead ID
     this.setState({
-      leadid: this.props.match.params.id
+      leadid: this.props.currentLeadId
     }, () => {
       //get lead info and add to state
       LeadsApi.getLeadById(this.state.leadid, resp => {

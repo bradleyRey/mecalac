@@ -3,20 +3,20 @@ import axios from 'axios';
 class LeadsApi {
 
   static getLeads(dealerid, callback){
-    axios.post(`/api/getLeadsById`, {dealerid: dealerid})
+    axios.post(`http://localhost:3010/api/getLeadsById`, {dealerid: dealerid})
       .then( response => {
         return callback(response)
       })
   }
   static getLeadById(leadid, callback){
-    axios.post(`/api/getSingleLeadById`, {leadid: leadid})
+    axios.post(`http://localhost:3010/api/getSingleLeadById`, {leadid: leadid})
       .then( response => {
         return callback(response)
       })
   }
 
   static submitLead(leadid, updateType, updateData, callback){
-    axios.post(`/api/updateLead`, {leadid: leadid, updateData: updateData, updateType: updateType})
+    axios.post(`http://localhost:3010/api/updateLead`, {leadid: leadid, updateData: updateData, updateType: updateType})
     .then( response => {
       return callback(response)
     })

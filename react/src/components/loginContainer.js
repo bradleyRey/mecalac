@@ -25,7 +25,7 @@ class LoginContainer extends Component {
       'username': this.state.username,
       'password': this.state.password
     }
-    axios.post(`/api/login`, names)
+    axios.post(`http://localhost:3010/api/login`, names)
       .then( response => {
         if(response.data.auth){
 
@@ -88,8 +88,6 @@ class LoginContainer extends Component {
               <Redirect to={{
                 pathname: '/dashboard',
                 state: this.state
-
-
               }} />
             ) : (
               <p></p>

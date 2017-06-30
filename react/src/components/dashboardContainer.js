@@ -13,8 +13,10 @@ import LeadsApi from '../api/leads'
 class DashboardContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props.location.state
-    this.state.leads = ''
+    this.state = {
+      ...this.props.userData,
+      leads: ''
+    }
   }
 
   componentWillMount(){
