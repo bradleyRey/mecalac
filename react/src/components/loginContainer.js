@@ -94,17 +94,15 @@ class LoginContainer extends Component {
             {this.state.errorMessage ? (
               <p>{this.state.errorMessage}</p>
             ) : (
-              <p></p>
+              null
             )}
             {this.state.isLoggedIn ? (
               <Redirect to={{
                 pathname: '/dashboard',
                 state: this.state
-
-
               }} />
             ) : (
-              <p></p>
+              null
             )}
             </div>
 

@@ -1,7 +1,3 @@
-  //make header component
-  //import header component
-  //read up on react router
-  //when clicking the login button, direct user to dashboard and display their name from the state
   import React, { Component } from 'react';
   import LoginContainer from './loginContainer'
   import TopHeaderComponent from './topHeaderComponent'

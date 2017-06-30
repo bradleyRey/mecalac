@@ -58,6 +58,11 @@ img.bg{
   margin: 20px auto 0px;
   text-align: center;
 }
+.logoutBtn{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
 
 
 

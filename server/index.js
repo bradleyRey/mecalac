@@ -1,9 +1,16 @@
-var express    = require('express');
-var bodyParser = require('body-parser');
-var cors       = require('cors')
-var app        = express();
-var mongodb   = require('mongodb');
+var express     = require('express');
+var bodyParser  = require('body-parser');
+var cors        = require('cors')
+var app         = express();
+var mongodb     = require('mongodb');
+var path        = require('path');
+
 const MongoClient = require('mongodb').MongoClient;
+
+app.use(express.static(path.resolve(__dirname, '../react', 'build')));
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, '../react', 'build', 'index.html'));
+});
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,10 +25,10 @@ mongodb.MongoClient.connect('mongodb://indigo-brad:indigo_river@ds141232.mlab.co
   }
   db = database;
   console.log('Database connection is ready')
-  var server= app.listen(process.env.PORT || 3010, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
+});
+var server= app.listen(process.env.PORT || 3010, function () {
+  var port = server.address().port;
+  console.log("App now running on port", port);
 });
 
 //Helper functions below
