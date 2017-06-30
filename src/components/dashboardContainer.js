@@ -22,7 +22,7 @@ class DashboardContainer extends Component {
     }
 
     //api call
-    LeadsApi.getLeads(this.state.userdata.dealerid, leads => {
+    LeadsApi.getLeads(localStorage['mecDealerId'], leads => {
       console.log(leads)
       this.setState({
         leads: leads.data

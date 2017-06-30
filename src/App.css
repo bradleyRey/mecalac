@@ -34,6 +34,7 @@ img.bg{
   white-space: nowrap;
   font-size: 12px;
   font-weight: bold;
+  text-decoration: none;
 }
 .btn:hover{
   background-color: rgb(195, 136, 8);
@@ -185,9 +186,11 @@ img.bg{
   font-size: 12px;
 }
 .completeLeadBtn{
-  width: 100%;
   margin-bottom: 80px;
   display: block;
+}
+button.completeLeadBtn{
+  width: 100%;
 }
 
 .NEWone {

@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import DashboardHeaderComponent from './dashboardHeaderComponent'
 import { Link } from 'react-router-dom'
+<<<<<<< HEAD
+=======
+import { browserHistory } from 'react-router'
+
+>>>>>>> 4157d1bf979ad67a6d517f6b7a5e280a08a1e2a0
 import '../App.css';
 import DashboardContainer from './dashboardContainer'
 import TitleAboveTable from './dashboardContainer'
@@ -41,18 +46,18 @@ class SingleLeadComponent extends Component {
       //get lead info and add to state
       LeadsApi.getLeadById(this.state.leadid, resp => {
         console.log("Get lead response: ", resp)
-        if(typeof resp.data.Status === 'object'){
+        if(typeof resp.data[0].Status === 'object'){
           this.setState({
             update1: {
-              ...resp.data.Status.update1
+              ...resp.data[0].Status.update1
             },
             update2: {
-              ...resp.data.Status.update2
+              ...resp.data[0].Status.update2
             },
             update3: {
-              ...resp.data.Status.update3
+              ...resp.data[0].Status.update3
             },
-            leadComplete: resp.data.Status.leadComplete
+            leadComplete: resp.data[0].Status.leadComplete
           });
 
         }
@@ -252,8 +257,7 @@ class SingleLeadComponent extends Component {
               <span></span>
             )}
             {this.state.leadComplete ? (
-
-              <Link to={`/dashboard`} className="btn completeLeadBtn">Back to leads</Link>
+              <Link to={{pathname: `/dashboard`, state: this.state}} className="btn completeLeadBtn">Back to leads</Link>
             ) : (
               <span></span>
             )}
