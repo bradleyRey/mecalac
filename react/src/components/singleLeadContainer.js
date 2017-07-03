@@ -1,4 +1,8 @@
 import React, { Component } from 'react';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
+
 import DashboardHeaderComponent from './dashboardHeaderComponent'
 import { Link } from 'react-router-dom'
 import '../App.css';
@@ -62,10 +66,11 @@ class SingleLeadComponent extends Component {
   }
 
   update1DateChange(e) {
+    e = moment(e).format('DD/MM/YYYY')
     this.setState({
       update1: {
         ...this.state.update1,
-        date: e.target.value,
+        date: e
        }
     });
   }
@@ -86,10 +91,11 @@ class SingleLeadComponent extends Component {
     });
   }
   update2DateChange(e) {
+    e = moment(e).format('DD/MM/YYYY')
     this.setState({
       update2: {
         ...this.state.update2,
-        date: e.target.value,
+        date: e,
        }
     });
   }
@@ -110,10 +116,11 @@ class SingleLeadComponent extends Component {
     });
   }
   update3DateChange(e) {
+    e = moment(e).format('DD/MM/YYYY')
     this.setState({
       update3: {
         ...this.state.update3,
-        date: e.target.value,
+        date: e,
        }
     });
   }
@@ -143,8 +150,6 @@ class SingleLeadComponent extends Component {
   }
 
   handleSubmit(updateNum) {
-    console.log(updateNum)
-    console.log(this.state.update1)
     delete this.state.error;
     if(updateNum == 'update1' && (this.state.update1.date == null || this.state.update1.activity == null || this.state.update1.nextAction == null)){
       this.setState({
@@ -214,7 +219,7 @@ class SingleLeadComponent extends Component {
                  {this.state.update1.complete ? (
                    <span className="completedInput">{this.state.update1.date}</span>
                  ) : (
-                   <input type="text" value={this.state.update1.date || ''} onChange={this.update1DateChange} />
+                   <DatePicker value={this.state.update1.date || ''}  onChange={this.update1DateChange} />
                  )}
                </td>
                <td>
@@ -249,7 +254,7 @@ class SingleLeadComponent extends Component {
                  {this.state.update2.complete ? (
                    <span className="completedInput">{this.state.update2.date}</span>
                  ) : (
-                   <input type="text" value={this.state.update2.date || ''} onChange={this.update2DateChange} />
+                   <DatePicker type="text" value={this.state.update2.date || ''} onChange={this.update2DateChange} />
                  )}
                </td>
                <td>
@@ -282,7 +287,7 @@ class SingleLeadComponent extends Component {
                  {this.state.update3.complete ? (
                    <span className="completedInput">{this.state.update3.date}</span>
                  ) : (
-                   <input type="text" value={this.state.update3.date || ''} onChange={this.update3DateChange} />
+                   <DatePicker type="text" value={this.state.update3.date || ''} onChange={this.update3DateChange} />
                  )}
                </td>
                <td>

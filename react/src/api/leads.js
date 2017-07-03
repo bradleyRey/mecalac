@@ -23,7 +23,7 @@ class LeadsApi {
   }
 
   static viewDealers(callback){
-    axios.post('/api/getDealerNames')
+    axios.post('http://localhost:3010/api/getDealerNames')
       .then( response => {
         return callback(response)
       })
