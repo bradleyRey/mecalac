@@ -170,7 +170,7 @@ class SingleLeadComponent extends Component {
     return(
       <div>
           <DashboardHeaderComponent />
-          <div className="maxWidth">
+          <div className="maxWidth maxWidthBorder">
             {this.state.error ? (
               <div className="errorWrap">{this.state.error}</div>
             ) : (

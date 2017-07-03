@@ -74,13 +74,11 @@ app.post('/api/getLeadsById',function(req,res){
   });
 });
 app.post('/api/getDealerNames',function(req,res){
-  db.collection('userData').find().toArray((err,resultNames)=>{
-  //  console.log(resultNames)
-    dealerStore=[]
+  db.collection('userData').find().toArray((err,resultNames) => {
+    var dealerStore = []
     for(i=0; i<resultNames.length; i++){
       dealerStore.push(resultNames[i].username)
     }
-    console.log(dealerStore)
     res.send(dealerStore)
   })
 })

@@ -105,8 +105,6 @@ class LoginContainer extends Component {
               null
             )}
             </div>
-
-
           </div>
         </div>
     );
@@ -120,7 +118,7 @@ class DropdownComponent extends Component {
     this.state = {chooseValue:'option1'}
 
 
-    LeadsApi.viewDealers(this.state.dealerNames, names => {
+    LeadsApi.viewDealers(this.state.dealerNames, function(names){
       console.log(names)
       this.state.dealerNames = names.data
       // this.state.dealerNames =
