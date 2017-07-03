@@ -241,6 +241,12 @@ input::placeholder, {
 .lockedRow{
   background:#ccc;
 }
+.lockedRow .btn{
+  display: none;
+}
+.lockedRow input{
+  background: #dddddd;
+}
 .closingCommentTd{
   position: relative;
 }

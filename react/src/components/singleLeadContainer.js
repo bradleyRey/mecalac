@@ -143,6 +143,27 @@ class SingleLeadComponent extends Component {
   }
 
   handleSubmit(updateNum) {
+    console.log(updateNum)
+    console.log(this.state.update1)
+    delete this.state.error;
+    if(updateNum == 'update1' && (this.state.update1.date == null || this.state.update1.activity == null || this.state.update1.nextAction == null)){
+      this.setState({
+        error: 'You must fill in all fields.'
+      })
+      return false;
+    }
+    if(updateNum == 'update2' && (this.state.update2.date == null || this.state.update2.activity == null || this.state.update2.nextAction == null)){
+      this.setState({
+        error: 'You must fill in all fields.'
+      })
+      return false;
+    }
+    if(updateNum == 'completeLead' && (this.state.update3.date == null || this.state.update3.activity == null || this.state.update3.nextAction == null)){
+      this.setState({
+        error: 'You must fill in all fields.'
+      })
+      return false;
+    }
     LeadsApi.submitLead(this.state.leadid, updateNum, this.state, resp => {
       console.log("Submit response: ", resp)
       if(resp.data.success){
@@ -190,13 +211,27 @@ class SingleLeadComponent extends Component {
                  <div className='updateBlock'>UPDATE 1</div>
                </td>
                <td>
-                 <input type="text" value={this.state.update1.date || ''} onChange={this.update1DateChange} />
+                 {this.state.update1.complete ? (
+                   <span className="completedInput">{this.state.update1.date}</span>
+                 ) : (
+                   <input type="text" value={this.state.update1.date || ''} onChange={this.update1DateChange} />
+                 )}
                </td>
                <td>
-                 <input type="text" value={this.state.update1.activity || ''} onChange={this.update1ActivityChange}  />
+                 {this.state.update1.complete ? (
+                   <span className="completedInput">{this.state.update1.activity}</span>
+                 ) : (
+                   <input type="text" value={this.state.update1.activity || ''} onChange={this.update1ActivityChange}  />
+                 )}
+
                </td>
                <td>
-                 <input type="text" value={this.state.update1.nextAction || ''} onChange={this.update1nextActionChange}  />
+                 {this.state.update1.complete ? (
+                   <span className="completedInput">{this.state.update1.nextAction}</span>
+                 ) : (
+                   <input type="text" value={this.state.update1.nextAction || ''} onChange={this.update1nextActionChange}  />
+                 )}
+
                </td>
                <td className="center">
                 {this.state.update1.complete ? (
@@ -211,13 +246,25 @@ class SingleLeadComponent extends Component {
                  <div className='updateBlock'>UPDATE 2</div>
                </td>
                <td>
-                 <input type="text" value={this.state.update2.date || ''} onChange={this.update2DateChange} />
+                 {this.state.update2.complete ? (
+                   <span className="completedInput">{this.state.update2.date}</span>
+                 ) : (
+                   <input type="text" value={this.state.update2.date || ''} onChange={this.update2DateChange} />
+                 )}
                </td>
                <td>
-                 <input type="text" value={this.state.update2.activity || ''} onChange={this.update2ActivityChange}  />
+                 {this.state.update2.complete ? (
+                   <span className="completedInput">{this.state.update2.activity}</span>
+                 ) : (
+                   <input type="text" value={this.state.update2.activity || ''} onChange={this.update2ActivityChange}  />
+                 )}
                </td>
                <td>
-                 <input type="text" value={this.state.update2.nextAction || ''} onChange={this.update2nextActionChange}  />
+                 {this.state.update2.complete ? (
+                   <span className="completedInput">{this.state.update2.nextAction}</span>
+                 ) : (
+                   <input type="text" value={this.state.update2.nextAction || ''} onChange={this.update2nextActionChange}  />
+                 )}
                </td>
                <td className="center">
                 {this.state.update2.complete ? (
@@ -232,17 +279,33 @@ class SingleLeadComponent extends Component {
                  <div className='updateBlock'>UPDATE 3</div>
                </td>
                <td>
-                 <input type="text" value={this.state.update3.date || ''} onChange={this.update3DateChange} />
+                 {this.state.update3.complete ? (
+                   <span className="completedInput">{this.state.update3.date}</span>
+                 ) : (
+                   <input type="text" value={this.state.update3.date || ''} onChange={this.update3DateChange} />
+                 )}
                </td>
                <td>
-                 <input type="text" value={this.state.update3.activity || ''} onChange={this.update3ActivityChange}  />
+                 {this.state.update3.complete ? (
+                   <span className="completedInput">{this.state.update3.activity}</span>
+                 ) : (
+                   <input type="text" value={this.state.update3.activity || ''} onChange={this.update3ActivityChange}  />
+                 )}
                </td>
                <td>
-                 <input type="text" value={this.state.update3.nextAction || ''} onChange={this.update3nextActionChange}  />
+                 {this.state.update3.complete ? (
+                   <span className="completedInput">{this.state.update3.nextAction}</span>
+                 ) : (
+                   <input type="text" value={this.state.update3.nextAction || ''} onChange={this.update3nextActionChange}  />
+                 )}
                </td>
                <td className="center closingCommentTd">
                 <div className="closingCommentHead">Closing comment</div>
-                  <input type="text" value={this.state.update3.closing || ''} onChange={this.update3ClosingChange}  />
+                  {this.state.update3.complete ? (
+                    <span className="completedInput">{this.state.update3.closing}</span>
+                  ) : (
+                    <input type="text" value={this.state.update3.closing || ''} onChange={this.update3ClosingChange}  />
+                  )}
                </td>
              </tr>
             </table>
