@@ -474,3 +474,11 @@ button.completeLeadBtn{
   margin-left: 5px;
   margin-top: 10px;
 }
+
+.adminTag{
+  top:0px;
+  position: absolute;
+  padding-top: 10px;
+  color:white;
+  font-size: 25px;
+}

@@ -57,11 +57,13 @@ app.post('/api/login',function(req,res){
   })
 });
 
+
 app.post('/api/getLeads',function(req,res){
   db.collection('leads').find().toArray((err, results) => {
     res.send(results)
   })
 });
+
 
 app.post('/api/getLeadsById',function(req,res){
   var dealerid = req.body.dealerid
@@ -73,6 +75,8 @@ app.post('/api/getLeadsById',function(req,res){
     res.send(results);
   });
 });
+
+
 app.post('/api/getDealerNames',function(req,res){
   db.collection('userData').find().toArray((err,resultNames) => {
     var dealerStore = []
@@ -82,6 +86,7 @@ app.post('/api/getDealerNames',function(req,res){
     res.send(dealerStore)
   })
 })
+
 
 app.post('/api/getSingleLeadById',function(req,res){
   var leadid = req.body.leadid
@@ -93,6 +98,7 @@ app.post('/api/getSingleLeadById',function(req,res){
     res.send(results);
   });
 });
+
 
 app.post('/api/updateLead',function(req,res){
   var leadid = req.body.leadid

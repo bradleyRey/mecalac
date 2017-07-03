@@ -5,6 +5,7 @@ import Test from './test/testing'
 import LoginContainer from './components/loginContainer'
 import DashboardContainer from './components/dashboardContainer';
 import SingleLeadContainer from './components/singleLeadContainer';
+import AdminContainer from './components/adminContainer';
 import { BrowserRouter, Switch, Route, withRouter, Redirect} from 'react-router-dom';
 
 const App = () => (
@@ -52,6 +53,7 @@ const MyRoutes = () => (
         )
 
       }}/>
+      <Route path='/admin' component={AdminContainer}/>
 
       </Switch>
     </main>

@@ -1,5 +1,5 @@
 //make header component
-//import header component
+//impor t header component
 //read up on react router
 //when clicking the login button, direct user to dashboard and display their name from the state
 import React, { Component } from 'react';
@@ -51,7 +51,8 @@ class DashboardContainer extends Component {
 
 function getNewData(data) {
   var rows = [];
-  if(data.length > 0){
+  if(data.length > 0){ 
+    console.log(data)
 
     for (var i = 0; i < data.length; i++) {
       var updateStatus = 'Not started'
@@ -71,7 +72,7 @@ function getNewData(data) {
 
       //if()
       rows.push(
-        <tr className={leadComplete ? "leadComplete": null}>
+        <tr className={leadComplete ? "leadComplete": null} >
           <td>{data[i].Title + " " + data[i]['First Name'] + " " + data[i]['Last Name']} </td>
           <td>{data[i]['Email Address']}</td>
           <td>{data[i]['Telephone Number']}</td>
