@@ -17,16 +17,16 @@ class LeadsApi {
 
   static submitLead(leadid, updateType, updateData, callback){
     axios.post(`http://localhost:3010/api/updateLead`, {leadid: leadid, updateData: updateData, updateType: updateType})
-    .then( response => {
-      return callback(response)
-    })
+      .then( response => {
+        return callback(response)
+      })
   }
 
   static viewDealers(callback){
-    axios.post('http://localhost:3010/api/getDealerNames')
-    .then( response => {
-      return callback(response)
-    })
+    axios.post('/api/getDealerNames')
+      .then( response => {
+        return callback(response)
+      })
   }
 }
 
