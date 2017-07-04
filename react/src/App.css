@@ -350,45 +350,19 @@ button.completeLeadBtn{
   right: 0;
   left: 0;
 }
-
-.facebook{
-    height:50px;
-    width:50px;
-    position:relative;
-    top:10px;
-    margin:auto;
-    max-width: none;
-    text-align:right;
-    padding-right:15px;
-
-}
-
-.linkedinlogo{
-    height:50px;
-    width:50px;
-    position:relative;
-    top:10px;
-    max-width: none;
-    text-align:right;
-    padding-right:15px;
-
-
-}
-
-.youtubelogo{
-    height:50px;
-    width:50px;
-    position:relative;
-    top:10px;
-    max-width: none;
-    text-align:right;
-    padding-right:15px;
-
+.socialMedia img{
+  width:30px;
+  position:relative;
+  top:20px;
+  margin:auto;
+  max-width: none;
+  text-align:right;
+  padding-right:15px;
 }
 
 
 .mecalacFooter {
-  height:50px;
+  height:40px;
   width:auto;
   padding-top:15px;
 

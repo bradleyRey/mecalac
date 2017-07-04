@@ -129,9 +129,9 @@ const Footer = (props) => {
       <div className='Footer'>
         <img className='mecalacFooter' src={require('./images/Logo.png')}/>
         <div className='socialMedia'>
-          <img className='facebook' src={require('./images/Facebooklogo.png')}/>
-          <img className='linkedinlogo' src={require('./images/linkedinlogo.png')}/>
-          <img className='youtubelogo' src={require('./images/youtubelogo.png')}/>
+          <a href="https://www.facebook.com/pages/Mecalac/539301466114716"><img className='facebook' src={require('./images/Facebooklogo.png')}/></a>
+          <a href="https://www.linkedin.com/company/9473367"><img className='linkedinlogo' src={require('./images/linkedinlogo.png')}/></a>
+          <a href="https://www.youtube.com/user/MecalacTV"><img className='youtubelogo' src={require('./images/youtubelogo.png')}/></a>
         </div>
       </div>
     </div>
