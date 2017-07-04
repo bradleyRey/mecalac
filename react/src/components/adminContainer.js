@@ -27,15 +27,14 @@ class AdminContainer extends Component{
     })
   }
 
-
     render(){
       return(
         <div>
           <DashboardHeaderComponent />
+          <div className='maxWidth maxWidthBorder'>
           //add RetrieveAllLeads to a component and pass the leads down to it using React
-          
-
-          {retrieveAllLeads(this.state.leads)}
+            <retrieveAllLeads data ={this.state.leads} />
+          </div>
         </div>
 
 
@@ -45,21 +44,34 @@ class AdminContainer extends Component{
 
 function retrieveAllLeads(data){
   var row = [];
+
   if(data.length > 0){
-
     for(var i=0 ; i < data.length; i++){
-
+      var stats='Not started';
+      var completedlead= false
+      if(typeof data[i].Status === 'object'){
+        if(data[i].Status.update1.completed){
+          stats='Update 1 submitted'
+        }
+        if(data[i].Status.update2.complete){
+          stats='Update 2 submitted'
+        }
+        if(data[i].Status.update3.complete){
+          stats='Update 3 submitted - Lead completed'
+          completedlead=true
+      }
+    }
       row.push(
-        <tr>
+        <tr className={completedlead ? 'leadComplete': null} >
           <td>{data[i].Title + " " + data[i]['First Name'] + " " + data[i]['Last Name']} </td>
           <td>{data[i].Company}</td>
-
+          <td>{stats}</td>
         </tr>
-      )
-    }
+    )
   }
+}
   return (
-    <table className='dashboardTable>'>
+    <table className='dashboardTable'>
       <tr>
         <th className='cellBorder'>Name</th>
         <th className='cellBorder'>Company</th>

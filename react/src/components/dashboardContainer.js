@@ -51,7 +51,7 @@ class DashboardContainer extends Component {
 
 function getNewData(data) {
   var rows = [];
-  if(data.length > 0){ 
+  if(data.length > 0){
     console.log(data)
 
     for (var i = 0; i < data.length; i++) {
