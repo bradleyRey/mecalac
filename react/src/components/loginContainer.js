@@ -14,6 +14,7 @@ class LoginContainer extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.assignChosenDealer = this.assignChosenDealer.bind(this);
+    console.log(process.env)
   }
   handleSubmit(e){
     e.preventDefault();
