@@ -7,7 +7,7 @@ import '../App.css';
 const TopHeaderComponent = () => (
   <div className='TopHeader'>
     <div className='logoSize'>
-      <img className="Logo" src={require('./images/Logo.png')}/>
+      <a href="http://www.coventry-mecalac.co.uk/"><img className="Logo" src={require('./images/Logo.png')}/></a>
       {(localStorage['mecLoggedIn']) ? <Link to="/logout" className="btn logoutBtn">Logout</Link> : null }
 
     </div>
