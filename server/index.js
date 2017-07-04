@@ -80,12 +80,36 @@ app.post('/api/getLeadsById',function(req,res){
 app.post('/api/getDealerNames',function(req,res){
   db.collection('userData').find().toArray((err,resultNames) => {
     var dealerStore = []
-    for(i=0; i<resultNames.length; i++){
+    test = true;
+    for(i=0; i < resultNames.length; i++){
+
+      if(resultNames[i].username === 'andy' || resultNames[i].username === 'allison'){
+        continue;
+      }
       dealerStore.push(resultNames[i].username)
-    }
-    res.send(dealerStore)
-  })
+
+      for(j=0; j<dealerStore.length; j++){
+        if(dealerStore[j] === 'brad'){
+          var rmvBrad= dealerStore.indexOf('brad')
+          dealerStore.splice(rmvBrad,1)
+          }
+        else if(dealerStore[j] === 'jay'){
+          var rmvJay=dealerStore.indexOf('jay')
+          dealerStore.splice(rmvJay,1)
+          }
+        else {
+          break
+          }
+        }
+
+
+
+      }
+      res.send(dealerStore)
+    })
+
 })
+
 
 
 app.post('/api/getSingleLeadById',function(req,res){
