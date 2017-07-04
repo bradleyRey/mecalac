@@ -258,7 +258,13 @@ input::placeholder, {
 .lockIcon{
   width: 50px;
   position: relative;
-  left: 150%;
+  left: 200%;
+  display: none;
+  top: 12px;
+}
+
+.lockedRow .lockIcon{
+  display: block;
 }
 
 .closingCommentTd{
