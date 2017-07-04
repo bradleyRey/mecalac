@@ -202,7 +202,11 @@ class SingleLeadComponent extends Component {
             ) : (
               null
             )}
-
+            {this.state.update1.complete ? (
+              <Link to={{pathname: `/dashboard`, state: this.state}} className="btn backToLeadsTop">Back to leads</Link>
+            ) : (
+              null
+            )}
             <table className='viewLeadTable'>
              <tr className='TableHeaderSingle'>
                <th className='cellBorder'></th>
@@ -251,6 +255,7 @@ class SingleLeadComponent extends Component {
                  <div className='updateBlock'>UPDATE 2</div>
                </td>
                <td>
+                  <img className="lockIcon" src={require('./images/lockIcon.png')}/>
                  {this.state.update2.complete ? (
                    <span className="completedInput">{this.state.update2.date}</span>
                  ) : (
@@ -284,6 +289,7 @@ class SingleLeadComponent extends Component {
                  <div className='updateBlock'>UPDATE 3</div>
                </td>
                <td>
+                 <img className="lockIcon" src={require('./images/lockIcon.png')}/>
                  {this.state.update3.complete ? (
                    <span className="completedInput">{this.state.update3.date}</span>
                  ) : (

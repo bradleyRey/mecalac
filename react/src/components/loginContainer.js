@@ -14,6 +14,7 @@ class LoginContainer extends Component {
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.assignChosenDealer = this.assignChosenDealer.bind(this);
+    console.log(process.env)
   }
   handleSubmit(e){
     e.preventDefault();
@@ -22,7 +23,7 @@ class LoginContainer extends Component {
       'username': this.state.chosenDealer,
       'password': this.state.password
     }
-    axios.post(`http://localhost:3010/api/login`, names)
+    axios.post(`/api/login`, names)
       .then( response => {
         if(response.data.auth){
           localStorage.setItem('mecLoggedIn', true);
