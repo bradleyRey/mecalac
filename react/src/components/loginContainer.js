@@ -23,17 +23,27 @@ class LoginContainer extends Component {
       'username': this.state.chosenDealer,
       'password': this.state.password
     }
-    axios.post(`/api/login`, names)
+    axios.post(`http://localhost:3010/api/login`, names)
       .then( response => {
         if(response.data.auth){
           localStorage.setItem('mecLoggedIn', true);
           localStorage.setItem('mecDealerId', response.data.userdata.dealerid);
           localStorage.setItem('mecDealerName', response.data.userdata.username);
-          this.setState({
-            isLoggedIn: true,
-            userdata: response.data.userdata,
-            errorMessage: false
-          })
+          if(response.data.userdata.username == 'admin'){
+            localStorage.setItem('mecAdmin', true);
+            this.setState({
+              userdata: response.data.userdata,
+              errorMessage: false,
+              isAdmin: true
+            })
+          }else{
+            this.setState({
+              isLoggedIn: true,
+              userdata: response.data.userdata,
+              errorMessage: false
+            })
+          }
+
         }else {
           this.setState({
             isLoggedIn: false,
@@ -86,6 +96,14 @@ class LoginContainer extends Component {
             ) : (
               null
             )}
+            {this.state.isAdmin ? (
+              <Redirect to={{
+                pathname: '/admin',
+                state: this.state
+              }} />
+            ) : (
+              null
+            )}
             {this.state.isLoggedIn ? (
               <Redirect to={{
                 pathname: '/dashboard',
@@ -95,8 +113,6 @@ class LoginContainer extends Component {
               null
             )}
             </div>
-
-
           </div>
         </div>
     );

@@ -24,6 +24,7 @@ const MyRoutes = () => (
         //When the /dashboard is accessed, the first render is done in the specified prop below. The props passed to that render are pnly avaliable
         //by passing the props in manually to the component we're loading if the user is logged in.
         <Route exact path='/dashboard' render={props => (
+
             localStorage['mecLoggedIn'] ? (
               <DashboardContainer userData={props.location.state} />
             ) : (
@@ -48,12 +49,23 @@ const MyRoutes = () => (
         localStorage.removeItem('mecLoggedIn');
         localStorage.removeItem('mecDealerId');
         localStorage.removeItem('mecDealerName');
+        localStorage.removeItem('mecAdmin');
         return(
           <LoginContainer />
         )
 
       }}/>
-      <Route path='/admin' component={AdminContainer}/>
+      <Route exact path='/admin' render={props => {
+        return (
+        localStorage['mecAdmin'] ? (
+          <AdminContainer />
+        ) : (
+          <Redirect to={{
+            pathname: '/'
+          }}/>
+        )
+      )
+    }}/>
 
       </Switch>
     </main>
