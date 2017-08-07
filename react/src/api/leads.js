@@ -1,5 +1,5 @@
-import axios from 'axios';
-
+ import axios from 'axios';
+// This file is used to access the api data into the front end, using the api end points found in tghe index file
 class LeadsApi {
 
   static getLeads(dealerid, callback){
@@ -26,7 +26,7 @@ class LeadsApi {
     axios.post('http://localhost:3010/api/getDealerNames')
       .then( response => {
         return callback(response)
-      })
+    })
   }
 
   static allLeads(callback){

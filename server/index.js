@@ -5,6 +5,8 @@ var app         = express();
 var mongodb     = require('mongodb');
 var path        = require('path');
 
+
+// Connecting to the remote database
 const MongoClient = require('mongodb').MongoClient;
 
 app.use(express.static(path.resolve(__dirname, '../react', 'build')));
@@ -57,14 +59,14 @@ app.post('/api/login',function(req,res){
   })
 });
 
-
+//API to gather all leads
 app.post('/api/getLeads',function(req,res){
   db.collection('leads').find().toArray((err, results) => {
     res.send(results)
   })
 });
 
-
+//API to gather  all DealerIDs
 app.post('/api/getLeadsById',function(req,res){
   var dealerid = req.body.dealerid
   dealerid = parseInt(dealerid)
@@ -76,7 +78,7 @@ app.post('/api/getLeadsById',function(req,res){
   });
 });
 
-
+//API gather deaker names only for the drop down menu
 app.post('/api/getDealerNames',function(req,res){
   db.collection('userData').find().toArray((err,resultNames) => {
     var dealerStore = []
@@ -101,16 +103,10 @@ app.post('/api/getDealerNames',function(req,res){
           break
           }
         }
-
-
-
       }
       res.send(dealerStore)
     })
-
-})
-
-
+  })
 
 app.post('/api/getSingleLeadById',function(req,res){
   var leadid = req.body.leadid
@@ -127,6 +123,7 @@ app.post('/api/getSingleLeadById',function(req,res){
 app.post('/api/updateLead',function(req,res){
   var leadid = req.body.leadid
   var updateType = req.body.updateType
+  console.log(updateType)
   leadid = parseInt(leadid)
   const updateData = req.body.updateData
   getSingleLeadById(leadid).then(resp => {

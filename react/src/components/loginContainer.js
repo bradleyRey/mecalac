@@ -23,6 +23,7 @@ class LoginContainer extends Component {
       'username': this.state.chosenDealer,
       'password': this.state.password
     }
+    // axios post to access back end data fron the api
     axios.post(`http://localhost:3010/api/login`, names)
       .then( response => {
         if(response.data.auth){
@@ -138,7 +139,8 @@ class DropdownComponent extends Component {
   }
   handleChange(e){
     //pass values up to parent
-    this.props.chosenDealer(e.target.value)
+    var chosenDealerFromDropdown = e.target.value
+    this.props.chosenDealer(chosenDealerFromDropdown)
     this.setState({chosenValue: e.target.value});
 
   }

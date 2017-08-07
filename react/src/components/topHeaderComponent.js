@@ -9,7 +9,6 @@ const TopHeaderComponent = () => (
     <div className='logoSize'>
       <a href="http://www.coventry-mecalac.co.uk/"><img className="Logo" src={require('./images/Logo.png')}/></a>
       {(localStorage['mecLoggedIn']) ? <Link to="/logout" className="btn logoutBtn">Logout</Link> : null }
-
     </div>
   </div>
 )

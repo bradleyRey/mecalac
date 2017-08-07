@@ -1,7 +1,3 @@
-//make header component
-//impor t header component
-//read up on react router
-//when clicking the login button, direct user to dashboard and display their name from the state
 import React, { Component } from 'react';
 import DashboardHeaderComponent from './dashboardHeaderComponent'
 import { Link } from 'react-router-dom'
@@ -25,7 +21,7 @@ class DashboardContainer extends Component {
 
     //api call
     LeadsApi.getLeads(localStorage['mecDealerId'], leads => {
-      console.log(leads)
+      console.log(leads,"LEADS")
       this.setState({
         leads: leads.data
       }, function(){
@@ -52,7 +48,7 @@ class DashboardContainer extends Component {
 function getNewData(data) {
   var rows = [];
   if(data.length > 0){
-    console.log(data)
+    console.log(data,'DATA')
 
     for (var i = 0; i < data.length; i++) {
       var updateStatus = 'Not started'
@@ -70,7 +66,7 @@ function getNewData(data) {
         }
       }
 
-      //if()
+
       rows.push(
         <tr className={leadComplete ? "leadComplete": null} >
           <td>{data[i].Title + " " + data[i]['First Name'] + " " + data[i]['Last Name']} </td>
@@ -94,7 +90,6 @@ function getNewData(data) {
         </tr>
       );
     }
-
   }
   return (
     <table className="dashboardTable">
@@ -140,14 +135,4 @@ const Footer = (props) => {
 
 }
 
-
-const Filter = (props) => {
-
-  function statusfirst(){
-
-
-  }
-
-
-}
 export default DashboardContainer;

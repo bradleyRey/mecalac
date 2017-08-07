@@ -62,7 +62,6 @@ class SingleLeadComponent extends Component {
         }
       });
     })
-
   }
 
   update1DateChange(e) {
